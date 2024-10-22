@@ -48,6 +48,33 @@ if (isset($_GET['id'])) {
 
     // Close the statement
     $stmt->close();
+
+    // Now fetch and display comments for the current movie
+    echo "<h3>Comments:</h3>";
+    
+    // Prepare and execute the query to get comments for this movie
+    $sql = "SELECT comment_text, comment_date FROM comments WHERE movie_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $movie_id);
+    $stmt->execute();
+    $stmt->bind_result($comment_text, $comment_date);
+
+    // Display the comments
+    if ($stmt->fetch()) {
+        // Loop through all comments and display them
+        do {
+            echo "<div>";
+            echo "<p><strong>Posted on " . $comment_date . ":</strong></p>";
+            echo "<p>" . $comment_text . "</p>";
+            echo "</div>";
+        } while ($stmt->fetch());
+    } else {
+        // If no comments found, display a message
+        echo "<p>No comments yet. Be the first to comment!</p>";
+    }
+
+    $stmt->close();  // Close the statement after fetching comments
+
 } else {
     // If no movie ID is passed in the URL, print an error message
     echo "<p>No movie ID provided.</p>";
