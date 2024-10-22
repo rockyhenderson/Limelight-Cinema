@@ -2,7 +2,7 @@
 // This is the main landing page of the cinema website.
 // It displays movie listings, showtimes, and links to member login, registration, and booking pages.
 include '../includes/db_connection.php';  // Include the database connection file
-
+include '../includes/header.php'; 
 $conn = connectDB();  // Try to connect to the database
 
 if ($conn) {
@@ -14,3 +14,4 @@ if ($conn) {
 
 $conn->close();  // Close the connection
 ?>
+

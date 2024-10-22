@@ -9,6 +9,7 @@ error_reporting(E_ALL);  // Report all PHP errors
 ini_set('display_errors', 1);  // Ensure errors are shown on the page
 
 include '../includes/db_connection.php';  // Include the database connection file
+include '../includes/header.php'; 
 
 $conn = connectDB();  // Connect to the database
 
