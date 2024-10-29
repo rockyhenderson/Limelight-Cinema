@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
         echo "<h1>" . $title . "</h1>";
         echo "<p>Rating: " . $rating . "</p>";
         echo "<p>Description: " . $description . "</p>";
-        echo "<img src='" . $photo_url . "' alt='" . $title . "'>";
+        echo "<img src='src/" . $photo_url . "' alt='" . $title . "'>";
     } else {
         // If no movie is found, print a message
         echo "<p>Movie not found.</p>";

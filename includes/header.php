@@ -46,6 +46,7 @@ $username = "username";
         <div class="navbar-left">
             <a href="index.php">Home</a>
             <a href="movies.php">Movies</a>
+            <a href="#">My Bookings</a>
         </div>
         <div class="navbar-right">
             <?php echo $username; ?>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/b6b5f43622.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+     body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.mobile {
+  background-color: black;
+  height: 896px;
+  width: 414px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.head-icons {
+  height: 40px;
+  width: 414px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.head-icons i {
+  margin: 10px;
+}
+
+.header-image {
+  background-image: url(../public/src/godzilla.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 50%;
+  width: 100%;
+  background-color: red;
+  border-radius: 10px 10px 0 0;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+  position: relative;
+}
+
+.movie-info {
+  padding: 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(0deg, black 60%, transparent 90%);
+  position: relative;
+  top: -100px; /* To make it overlap more with the header image */
+  z-index: 1;
+}
+
+.movie-info .top-info {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.movie-info .age-language {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.movie-info .ratings {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.book-ticket-btn {
+  background-color: purple;
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.movie-description{
+    position: relative;
+  top: -100px;
+  padding:20px;
+  padding-top:0;
+}
+
+    </style>
+    <body>
+      <div class="mobile">
+        <div class="head-icons">
+          <i class="fa-solid fa-arrow-left fa-xl" style="color:white;margin-left:20px;"></i>
+          <div class="icon-wrapper-div" style="margin-right:20px;">
+            <i class="fa-solid fa-heart fa-xl" style="color:white;"></i>
+            <i class="fa-solid fa-arrow-up-from-bracket fa-xl" style="color:white;"></i>
+          </div>
+        </div>
+        <div class="header-image"></div>
+        <div class="movie-info">
+          <div class="top-info">
+            Genre: Action, Adventure | Length: 2h 10m
+            <h1>Godzilla</h1>
+          </div>
+          <div class="age-language">
+            Age Rating: PG-13 | Language: English
+          </div>
+          <div class="ratings">
+            <span>IMDB: 8.2</span>
+            <span>Tomato: 85%</span>
+          </div>
+          <button class="book-ticket-btn">Book Ticket</button>
+          <div class="movie-desc">
+
+          </div>
+        </div>
+        <div class="movie-description" style="color:white;">
+            <p style="margin:none;">Description</p>
+            <p>In a world where humanity's survival hangs by a thread, an ancient force rises from the depths of the ocean. Godzilla, a massive, powerful creature, emerges as both a savior and a destroyer. As governments and scientists race to understand this unstoppable beast, they are faced with a chilling reality: humanity may no longer be at the top of the food chain. With breathtaking destruction and awe-inspiring spectacle, Godzilla brings to life the ultimate clash between man and monster, where the fate of the world rests on the balance of nature's greatest predator.
+            </p>
+        </div>
+      </div>
+    </body>
+  </html>
+  
