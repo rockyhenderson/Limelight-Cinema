@@ -8,339 +8,7 @@
       src="https://kit.fontawesome.com/b6b5f43622.js"
       crossorigin="anonymous"
     ></script>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif !important;
-        background-color: #121212;
-      }
-
-      .mobile {
-        background-color: #161620;
-        overflow: hidden;
-      }
-
-      .head-icons {
-        height: 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        padding: 0 20px;
-        z-index: 1000;
-      }
-
-      .head-icons i {
-        margin: 10px;
-      }
-
-      .header-image {
-        background-image: url(../public/src/godzilla.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        height: 60vh;
-        background-color: red;
-        opacity: 0;
-        animation: fadeIn 1.5s forwards;
-        position: relative;
-      }
-
-      .movie-info {
-        padding: 20px;
-        color: white;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(0deg, #161620 70%, transparent 100%);
-        position: relative;
-        top: -100px;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        padding-bottom:0px;
-      }
-      .info-wrapper {
-        display: flex;
-        flex-direction: column;
-      }
-      .movie-info .top-info {
-        font-size: 14px;
-        margin-bottom: 10px;
-      }
-      .age-language,
-      .ratings {
-        display: flex;
-      }
-      .movie-info .age-language {
-        font-size: 16px;
-        margin-bottom: 10px;
-        display: flex;
-        gap: 8px;
-      }
-
-      .pill {
-        background-color: #2c2c2c; /* Dark background color */
-        color: #ffffff; /* White text */
-        font-size: 14px; /* Adjust font size */
-        padding: 5px 12px; /* Padding for pill shape */
-        border-radius: 15px; /* Rounded edges for pill shape */
-        border: 1px solid #4a4a4a; /* Light gray border */
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .movie-info .ratings {
-        font-size: 16px;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: start;
-        width: 300px;
-      }
-
-      .book-ticket-btn {
-        background-color: #6a0dad; /* Richer purple color */
-        color: white;
-        font-size: 25px;
-        padding:0px;
-        border: none;
-        border-radius: 25px;
-        width: 100%;
-        max-width: 500px;
-        height: 80px;
-        cursor: pointer;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        font-weight: bold;
-        transition: background-color 0.3s, transform 0.1s;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      .book-ticket-btn i {
-        font-size: 1.2em;
-      }
-
-      .book-ticket-btn:hover {
-        background-color: #400980; /* Slightly darker purple */
-      }
-
-      .book-ticket-btn:active {
-        transform: scale(0.98); /* Slightly "presses" button */
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .movie-description {
-        position: relative;
-        top: -100px;
-        padding: 20px;
-        padding-bottom: 0;
-        padding-top: 0;
-        color: white;
-      }
-      h1 {
-        font-size: 50px;
-        margin-top: 10px;
-        margin-bottom: 0px;
-      }
-
-      /* Reviews Section Styling */
-      .reviews {
-        position: relative;
-        top: -80px;
-        padding: 20px;
-        padding-top: 0;
-        color: white;
-      }
-
-      .review-item {
-        margin-bottom: 15px;
-      }
-
-      .review-box {
-        background-color: #333;
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      .review-box strong {
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      .see-more-comments {
-        background-color: #444;
-        color: white;
-        font-size: 16px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-        width: 100%;
-      }
-
-      .see-more-comments:hover {
-        background-color: #555;
-      }
-
-      /* Similar Movies Section Styling */
-      .similar-movies {
-        position: relative;
-        top: -60px;
-        padding: 20px;
-        color: white;
-      }
-
-      .similar-movie-item {
-        display: inline-block;
-        text-align: center;
-        margin-right: 10px;
-        margin-bottom: 15px;
-      }
-
-      .similar-movie-item img {
-        height: 120px;
-        width: 120px;
-        border-radius: 10px;
-        display: block;
-        margin: 0 auto 5px auto;
-        object-fit: cover;
-        background-color: #333;
-      }
-
-      .similar-movie-item span {
-        font-size: 14px;
-        color: white;
-      }
-      .head-wrapper {
-        display: flex;
-        flex-direction: column;
-      }
-      .debug-box {
-        background-color: green;
-      }
-      #movie-genre{
-        margin-bottom:0px;
-      }
-      #movie-title {
-          font-size: 3em;
-        }
-      /* TABLET VIEW */
-      @media (min-width: 768px) {
-        .movie-info .age-language {
-          margin-bottom:0px;
-        }
-        .movie-info .ratings{
-          margin-bottom: 0px;
-        }
-        .book-ticket-btn {
-          margin-bottom: 10px;
-          font-size: 20px;
-          height: 70px;
-        }
-        .movie-info {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 5px;
-          height:250px;
-          padding-bottom:0px;
-        }
-
-        #movie-title {
-          font-size: 4em;
-        }
-
-        .info-wrapper {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 20px;
-        }
-
-        #movie-genre {
-          margin-top: -5px;
-          font-size: 1.1em;
-        }
-
-        .ratings-and-ticket-button-wrapper {
-          display: flex;
-          align-items: center;
-        }
-
-        .age-language {
-          display: flex;
-          gap: 8px;
-        }
-        .ratings-and-ticket-button-wrapper {
-          display: flex;
-          flex-direction: column;
-          justify-content: end;
-          margin-left: -90px;
-        }
-        .debug-box {
-          background-color: yellow;
-        }
-        .container {
-          padding: 40px;
-        }
-        .header-image {
-          height: 50vh;
-        }
-        .movie-info {
-          top: -120px;
-          padding: 30px;
-          padding-bottom:0px;
-        }
-        .movie-description {
-          top: -100px;
-        }
-        .reviews {
-          top: -60px;
-        }
-        .similar-movies {
-          top: -40px;
-        }
-        .movie-info {
-          display: flex;
-        }
-        h1 {
-          font-size: 70px;
-          margin-bottom: 0px;
-          margin-top: -10px;
-          margin-left: -2px;
-        }
-      }
-      /* COMPUER VIEW */
-      @media (min-width: 1024px) {
-        .debug-box {
-          background-color: red;
-        }
-        .header-image {
-          height: 60vh;
-        }
-        .head-wrapper {
-          display: flex;
-          flex-direction: row;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="../public/css/styles.css">
   </head>
   <body>
     <div
@@ -357,71 +25,73 @@
     ></div>
     <div class="mobile">
       <div class="head-icons">
-        <i class="fa-solid fa-arrow-left fa-xl" style="color: white"></i>
+        <i class="fa-solid fa-arrow-left fa-2xl" style="color: white"></i>
         <div class="icon-wrapper-div">
-          <i class="fa-solid fa-heart fa-xl" style="color: white"></i>
+          <i class="fa-solid fa-heart fa-2xl" style="color: white"></i>
           <i
-            class="fa-solid fa-arrow-up-from-bracket fa-xl"
+            class="fa-solid fa-arrow-up-from-bracket fa-2xl"
             style="color: white"
           ></i>
         </div>
       </div>
       <div class="head-wrapper">
         <div class="header-image"></div>
-        <div class="movie-info">
-          <h1 id="movie-title">Godzilla</h1>
-          <p id="movie-genre">Action, Adventure | 2h 10m</p>
-          <div class="info-wrapper">
-            <div class="age-language">
-              <p class="pill">PG-13</p>
-              <p class="pill">English</p>
+        <div class="movie-head-wrapper">
+          <div class="movie-info">
+            <div id="movie-title-container">
+              <h1 id="movie-title">Godzilla</h1>
             </div>
-            <div class="ratings">
-              <div
-                id="imdb-rating"
-                style="display: flex; align-items: center; height: 25px"
-              >
-                <img
-                  src="../public/src/IMDbLogo.png"
-                  alt="IMDb logo"
-                  style="height: 25px"
-                />
-                <p style="margin-left: 5px">7.2</p>
+            <p id="movie-genre">Action, Adventure | 2h 10m</p>
+            <div class="info-wrapper">
+              <div class="age-language">
+                <p class="pill">PG-13</p>
+                <p class="pill">English</p>
               </div>
-              <p style="margin: 0px; margin-left: 15px; margin-right: 20px">
-                |
-              </p>
-              <div
-                id="rottentom-rating"
-                style="display: flex; align-items: center; height: 25px"
-              >
-                <img
-                  src="../public/src/RottenTomLogo.png"
-                  alt="Rotten Tomatoes logo"
-                  style="height: 25px"
-                />
-                <p style="margin-left: 5px">85%</p>
+              <div class="ratings">
+                <div
+                  id="imdb-rating"
+                  style="display: flex; align-items: center; height: 25px"
+                >
+                  <img
+                    src="../public/src/IMDbLogo.png"
+                    alt="IMDb logo"
+                    style="height: 25px"
+                  />
+                  <p style="margin-left: 5px">7.2</p>
+                </div>
+                <p style="margin: 0px; margin-left: 15px; margin-right: 20px">
+                  |
+                </p>
+                <div
+                  id="rottentom-rating"
+                  style="display: flex; align-items: center; height: 25px"
+                >
+                  <img
+                    src="../public/src/RottenTomLogo.png"
+                    alt="Rotten Tomatoes logo"
+                    style="height: 25px"
+                  />
+                  <p style="margin-left: 5px">85%</p>
+                </div>
               </div>
             </div>
+            <button class="book-ticket-btn">
+              <i class="fa-solid fa-ticket-simple"></i> Buy Ticket
+            </button>
           </div>
-          <button class="book-ticket-btn">
-            <i class="fa-solid fa-ticket-simple"></i> Book Ticket
-          </button>
+
+          <div class="movie-description">
+            <h2>Description</h2>
+            <p>
+              In a world on the brink, Godzilla—a colossal force of
+              nature—emerges as both savior and destroyer. As scientists and
+              governments scramble to understand the unstoppable beast, humanity
+              faces a chilling truth: we may no longer be at the top of the food
+              chain. In a breathtaking clash of man versus monster, the fate of
+              the world hangs in the balance.
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="movie-description">
-        <h2>Description</h2>
-        <p>
-          In a world where humanity's survival hangs by a thread, an ancient
-          force rises from the depths of the ocean. Godzilla, a massive,
-          powerful creature, emerges as both a savior and a destroyer. As
-          governments and scientists race to understand this unstoppable beast,
-          they are faced with a chilling reality: humanity may no longer be at
-          the top of the food chain. With breathtaking destruction and
-          awe-inspiring spectacle, Godzilla brings to life the ultimate clash
-          between man and monster, where the fate of the world rests on the
-          balance of nature's greatest predator.
-        </p>
       </div>
       <div class="reviews">
         <h2>Reviews</h2>
@@ -459,4 +129,51 @@
       </div>
     </div>
   </body>
+  <script>
+    function adjustFontSizeToFit(element) {
+      const parent = element.parentElement;
+      let currentFontSize = 100; // Start with a reasonably large font size
+      element.style.fontSize = `${currentFontSize}px`;
+
+      console.log("Starting adjustment with font size:", currentFontSize);
+
+      // Reduce the font size until the text fits within the container width and height
+      while (
+        element.scrollWidth > parent.offsetWidth ||
+        element.scrollHeight > parent.offsetHeight
+      ) {
+        console.log(
+          `Text width: ${element.scrollWidth}px, Parent width: ${parent.offsetWidth}px`
+        );
+        console.log(
+          `Text height: ${element.scrollHeight}px, Parent height: ${parent.offsetHeight}px`
+        );
+
+        currentFontSize--;
+        element.style.fontSize = `${currentFontSize}px`;
+
+        console.log("Adjusting font size to:", currentFontSize);
+
+        // Prevent getting too small
+        if (currentFontSize < 5) {
+          console.warn("Font size has reached the minimum limit of 5px");
+          break;
+        }
+      }
+
+      console.log("Final font size after adjustment:", currentFontSize);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const headerElement = document.getElementById("movie-title");
+      adjustFontSizeToFit(headerElement);
+    });
+
+    // Optional: Re-adjust when the window size changes
+    window.addEventListener("resize", () => {
+      const headerElement = document.getElementById("movie-title");
+      console.log("Window resized. Adjusting font size again...");
+      adjustFontSizeToFit(headerElement);
+    });
+  </script>
 </html>
