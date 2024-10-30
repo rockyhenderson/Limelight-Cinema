@@ -102,6 +102,7 @@
   padding:20px;
   padding-top:0;
 }
+/* Reviews Section Styling */
 .reviews {
     position: relative;
     top: -80px;
@@ -111,10 +112,37 @@
 
 .review-item {
     margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #444;
 }
 
+.review-box {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.review-box strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.see-more-comments {
+    background-color: #444;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.see-more-comments:hover {
+    background-color: #555;
+}
+
+/* Similar Movies Section Styling */
 .similar-movies {
     position: relative;
     top: -60px;
@@ -123,17 +151,27 @@
 }
 
 .similar-movie-item {
-    display: flex;
-    align-items: center;
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
     margin-bottom: 15px;
 }
 
 .similar-movie-item img {
-    height: 80px;
-    width: 60px;
-    border-radius: 5px;
-    margin-right: 10px;
+    height: 120px;
+    width: 120px;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto 5px auto;
+    object-fit: cover;
+    background-color: #333;
 }
+
+.similar-movie-item span {
+    font-size: 14px;
+    color: white;
+}
+
 
 
     </style>
@@ -164,22 +202,28 @@
           </div>
         </div>
         <div class="movie-description" style="color:white;">
-            <p style="margin:none;">Description</p>
+            <h2 style="margin:none;">Description</h2>
             <p>In a world where humanity's survival hangs by a thread, an ancient force rises from the depths of the ocean. Godzilla, a massive, powerful creature, emerges as both a savior and a destroyer. As governments and scientists race to understand this unstoppable beast, they are faced with a chilling reality: humanity may no longer be at the top of the food chain. With breathtaking destruction and awe-inspiring spectacle, Godzilla brings to life the ultimate clash between man and monster, where the fate of the world rests on the balance of nature's greatest predator.
             </p>
         </div>
-
 <div class="reviews">
   <h2>Reviews</h2>
   <div class="review-item">
-      <strong>John Doe</strong> - ⭐⭐⭐⭐⭐<br>
-      <p>Amazing visuals and great action sequences! A must-watch for monster fans.</p>
+      <div class="review-box">
+          <strong>John Doe</strong> - ⭐⭐⭐⭐⭐<br>
+          <p>Amazing visuals and great action sequences! A must-watch for monster fans.</p>
+      </div>
   </div>
   <div class="review-item">
-      <strong>Jane Smith</strong> - ⭐⭐⭐⭐☆<br>
-      <p>Thrilling movie with great suspense. Storyline could have been a bit stronger, though.</p>
+      <div class="review-box">
+          <strong>Jane Smith</strong> - ⭐⭐⭐⭐☆<br>
+          <p>Thrilling movie with great suspense. Storyline could have been a bit stronger, though.</p>
+      </div>
   </div>
+  <!-- See More Comments Button -->
+  <button class="see-more-comments">See More Comments</button>
 </div>
+
 
 
 <div class="similar-movies">
