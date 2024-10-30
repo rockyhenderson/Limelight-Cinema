@@ -16,7 +16,7 @@
       }
 
       .mobile {
-        background-color: black;
+        background-color: #161620;
         overflow: hidden;
       }
 
@@ -54,17 +54,26 @@
         padding: 20px;
         color: white;
         font-family: Arial, sans-serif;
-        background: linear-gradient(0deg, black 70%, transparent 90%);
+        background: linear-gradient(0deg, #161620 70%, transparent 100%);
         position: relative;
         top: -100px;
         z-index: 1;
+        display: flex;
+        flex-direction: column;
+        padding-bottom:0px;
       }
-
+      .info-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
       .movie-info .top-info {
         font-size: 14px;
         margin-bottom: 10px;
       }
-
+      .age-language,
+      .ratings {
+        display: flex;
+      }
       .movie-info .age-language {
         font-size: 16px;
         margin-bottom: 10px;
@@ -97,7 +106,7 @@
         background-color: #6a0dad; /* Richer purple color */
         color: white;
         font-size: 25px;
-        padding: 15px 20px;
+        padding:0px;
         border: none;
         border-radius: 25px;
         width: 100%;
@@ -144,9 +153,9 @@
         color: white;
       }
       h1 {
-        font-size: 40px;
+        font-size: 50px;
         margin-top: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
       }
 
       /* Reviews Section Styling */
@@ -226,34 +235,64 @@
       .debug-box {
         background-color: green;
       }
+      #movie-genre{
+        margin-bottom:0px;
+      }
+      #movie-title {
+          font-size: 3em;
+        }
       /* TABLET VIEW */
       @media (min-width: 768px) {
+        .movie-info .age-language {
+          margin-bottom:0px;
+        }
+        .movie-info .ratings{
+          margin-bottom: 0px;
+        }
         .book-ticket-btn {
           margin-bottom: 10px;
           font-size: 20px;
-          height: 60px;
+          height: 70px;
         }
         .movie-info {
-          background: linear-gradient(0deg, black 50%, transparent 90%);
-        }
-        .top-info {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          align-items: flex-start;
+          gap: 5px;
+          height:250px;
+          padding-bottom:0px;
+        }
+
+        #movie-title {
+          font-size: 4em;
+        }
+
+        .info-wrapper {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 20px;
         }
 
         #movie-genre {
-          order: 2;
+          margin-top: -5px;
+          font-size: 1.1em;
         }
-        #movie-title {
-          order: 1;
+
+        .ratings-and-ticket-button-wrapper {
+          display: flex;
+          align-items: center;
+        }
+
+        .age-language {
+          display: flex;
+          gap: 8px;
         }
         .ratings-and-ticket-button-wrapper {
           display: flex;
           flex-direction: column;
           justify-content: end;
-          margin-left: -70px;
-          
+          margin-left: -90px;
         }
         .debug-box {
           background-color: yellow;
@@ -267,6 +306,7 @@
         .movie-info {
           top: -120px;
           padding: 30px;
+          padding-bottom:0px;
         }
         .movie-description {
           top: -100px;
@@ -279,7 +319,6 @@
         }
         .movie-info {
           display: flex;
-          flex-direction: row;
         }
         h1 {
           font-size: 70px;
@@ -330,56 +369,44 @@
       <div class="head-wrapper">
         <div class="header-image"></div>
         <div class="movie-info">
-          <div class="top-and-age-wrapper">
-            <div class="top-info">
-              <p id="movie-genre">Action, Adventure | 2h 10m</p>
-              <h1 id="movie-title">Godzilla</h1>
-            </div>
+          <h1 id="movie-title">Godzilla</h1>
+          <p id="movie-genre">Action, Adventure | 2h 10m</p>
+          <div class="info-wrapper">
             <div class="age-language">
               <p class="pill">PG-13</p>
               <p class="pill">English</p>
             </div>
-          </div>
-          <div class="ratings-and-ticket-button-wrapper">
             <div class="ratings">
               <div
                 id="imdb-rating"
-                style="
-                  height: 25px;
-                  width: auto;
-                  display: flex;
-                  align-items: center;
-                "
+                style="display: flex; align-items: center; height: 25px"
               >
                 <img
                   src="../public/src/IMDbLogo.png"
-                  alt="imdb logo"
+                  alt="IMDb logo"
                   style="height: 25px"
                 />
                 <p style="margin-left: 5px">7.2</p>
               </div>
-              <p style="margin:0px;margin-left:15px;margin-right:20px">|</p>
+              <p style="margin: 0px; margin-left: 15px; margin-right: 20px">
+                |
+              </p>
               <div
                 id="rottentom-rating"
-                style="
-                  height: 25px;
-                  width: 100px;
-                  display: flex;
-                  align-items: center;
-                "
+                style="display: flex; align-items: center; height: 25px"
               >
                 <img
                   src="../public/src/RottenTomLogo.png"
-                  alt="imdb logo"
+                  alt="Rotten Tomatoes logo"
                   style="height: 25px"
                 />
                 <p style="margin-left: 5px">85%</p>
               </div>
             </div>
-            <button class="book-ticket-btn">
-              <i class="fa-solid fa-ticket-simple"></i> Book Ticket
-            </button>
           </div>
+          <button class="book-ticket-btn">
+            <i class="fa-solid fa-ticket-simple"></i> Book Ticket
+          </button>
         </div>
       </div>
       <div class="movie-description">
