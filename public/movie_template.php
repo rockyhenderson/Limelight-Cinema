@@ -1,27 +1,18 @@
 <?php
 // movie_template.php
 
-// This page dynamically displays details for a single movie based on the movie ID passed in the URL (e.g., movie_template.php?id=23).
-// It fetches movie data such as the title, rating, description, and photo from the database.
-// Additionally, it includes a comment section where users can view and post comments related to the movie.
-// This template is used for every movie, making the page content dynamic.
 error_reporting(E_ALL);  // Report all PHP errors
 ini_set('display_errors', 1);  // Ensure errors are shown on the page
 
 include '../includes/db_connection.php';  // Include the database connection file
-include '../includes/header.php'; 
-
 $conn = connectDB();  // Connect to the database
 
 // Check if the movie ID is passed in the URL
 if (isset($_GET['id'])) {
     $movie_id = $_GET['id'];
 
-    // Debug: Output the movie ID to ensure it's being retrieved correctly
-    echo "<p>Movie ID: " . $movie_id . "</p>";
-
     // Prepare and execute the SQL query to fetch movie details
-    $sql = "SELECT title, rating, description, photo_url FROM movies WHERE id = ?";
+    $sql = "SELECT title, rating, photo_url, description, runtime, genres, rotten_tomatoes, imdb_score FROM movies WHERE id = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -34,53 +25,143 @@ if (isset($_GET['id'])) {
     $stmt->execute();
 
     // Bind the results to variables
-    $stmt->bind_result($title, $rating, $description, $photo_url);
+    $stmt->bind_result($title, $rating, $photo_url, $description, $runtime, $genres, $rotten_tomatoes, $imdb_score);
 
     if ($stmt->fetch()) {
-        // If the movie is found, display its details
-        echo "<h1>" . $title . "</h1>";
-        echo "<p>Rating: " . $rating . "</p>";
-        echo "<p>Description: " . $description . "</p>";
-        echo "<img src='src/" . $photo_url . "' alt='" . $title . "'>";
+        // Split genres into an array
+        $genres_array = json_decode($genres, true);
     } else {
-        // If no movie is found, print a message
-        echo "<p>Movie not found.</p>";
+        // If no movie is found, print a message and exit
+        die("<p>Movie not found.</p>");
     }
 
     // Close the statement
     $stmt->close();
-
-    // Now fetch and display comments for the current movie
-    echo "<h3>Comments:</h3>";
-    
-    // Prepare and execute the query to get comments for this movie
-    $sql = "SELECT comment_text, comment_date FROM comments WHERE movie_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $movie_id);
-    $stmt->execute();
-    $stmt->bind_result($comment_text, $comment_date);
-
-    // Display the comments
-    if ($stmt->fetch()) {
-        // Loop through all comments and display them
-        do {
-            echo "<div>";
-            echo "<p><strong>Posted on " . $comment_date . ":</strong></p>";
-            echo "<p>" . $comment_text . "</p>";
-            echo "</div>";
-        } while ($stmt->fetch());
-    } else {
-        // If no comments found, display a message
-        echo "<p>No comments yet. Be the first to comment!</p>";
-    }
-
-    $stmt->close();  // Close the statement after fetching comments
-
 } else {
-    // If no movie ID is passed in the URL, print an error message
-    echo "<p>No movie ID provided.</p>";
+    // If no movie ID is passed in the URL, print an error message and exit
+    die("<p>No movie ID provided.</p>");
 }
 
 // Close the database connection
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><?php echo htmlspecialchars($title); ?></title>
+    <script src="https://kit.fontawesome.com/b6b5f43622.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../public/css/styles.css">
+</head>
+<body>
+    <div class="mobile">
+        <div class="head-icons">
+            <i class="fa-solid fa-arrow-left fa-2xl" style="color: white"></i>
+            <div class="icon-wrapper-div">
+                <i class="fa-solid fa-heart fa-2xl" style="color: white"></i>
+                <i class="fa-solid fa-arrow-up-from-bracket fa-2xl" style="color: white"></i>
+            </div>
+        </div>
+        <div class="head-wrapper">
+        <div class="header-image" style="background-image: url('../public/src/<?php echo htmlspecialchars($photo_url); ?>');"></div>
+            <div class="movie-head-wrapper">
+                <div class="movie-info">
+                    <div id="movie-title-container">
+                        <h1 id="movie-title"><?php echo htmlspecialchars($title); ?></h1>
+                    </div>
+                    <p id="movie-genre"><?php echo htmlspecialchars(implode(', ', $genres_array)); ?> | <?php echo htmlspecialchars($runtime); ?>m</p>
+
+                    <div class="info-wrapper">
+                        <div class="age-language">
+                            <p class="pill"><?php echo htmlspecialchars($rating); ?></p>
+                            <p class="pill">English</p> <!-- STATIC FOR NOW CHANGE LATER -->
+                        </div>
+                        <div class="ratings">
+                            <div id="imdb-rating" style="display: flex; align-items: center; height: 25px">
+                                <img src="../public/src/IMDbLogo.png" alt="IMDb logo" style="height: 25px" />
+                                <p style="margin-left: 5px"><?php echo htmlspecialchars($imdb_score); ?></p>
+                            </div>
+                            <p style="margin: 0px; margin-left: 15px; margin-right: 20px">|</p>
+                            <div id="rottentom-rating" style="display: flex; align-items: center; height: 25px">
+                                <img src="../public/src/RottenTomLogo.png" alt="Rotten Tomatoes logo" style="height: 25px" />
+                                <p style="margin-left: 5px"><?php echo htmlspecialchars($rotten_tomatoes); ?>%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="book-ticket-btn">
+                        <i class="fa-solid fa-ticket-simple"></i> Buy Ticket
+                    </button>
+                </div>
+
+                <div class="movie-description">
+                    <h2>Description</h2>
+                    <p><?php echo htmlspecialchars($description); ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <!-- Reviews section would be dynamically populated similarly if needed -->
+            <div class="review-item">
+                <div class="review-box">
+                    <strong>John Doe</strong>⭐⭐⭐⭐⭐<br />
+                    <p> Amazing visuals and great action sequences! A must-watch for monster fans. </p>
+                </div>
+            </div>
+            <div class="review-item">
+                <div class="review-box">
+                    <strong>Jane Smith</strong>⭐⭐⭐⭐⭐<br />
+                    <p> Thrilling movie with great suspense. Storyline could have been a bit stronger, though. </p>
+                </div>
+            </div>
+            <!-- See More Comments Button -->
+            <button class="see-more-comments">See More Comments</button>
+        </div>
+        <div class="similar-movies">
+            <h2>Similar Movies</h2>
+            <div class="similar-movie-item">
+                <img src="../public/src/dark_knight.jpg" alt="Dark Knight" />
+                <span>Dark Knight</span>
+            </div>
+            <div class="similar-movie-item">
+                <img src="../public/src/inception.jpg" alt="Inception" />
+                <span>Inception</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function adjustFontSizeToFit(element) {
+        const parent = element.parentElement;
+        let currentFontSize = 100; // Start with a reasonably large font size
+        element.style.fontSize = `${currentFontSize}px`;
+
+        // Reduce the font size until the text fits within the container width and height
+        while (
+            element.scrollWidth > parent.offsetWidth ||
+            element.scrollHeight > parent.offsetHeight
+        ) {
+            currentFontSize--;
+            element.style.fontSize = `${currentFontSize}px`;
+
+            // Prevent getting too small
+            if (currentFontSize < 5) {
+                break;
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const headerElement = document.getElementById("movie-title");
+        adjustFontSizeToFit(headerElement);
+    });
+
+    // Optional: Re-adjust when the window size changes
+    window.addEventListener("resize", () => {
+        const headerElement = document.getElementById("movie-title");
+        adjustFontSizeToFit(headerElement);
+    });
+</script>
+</html>
