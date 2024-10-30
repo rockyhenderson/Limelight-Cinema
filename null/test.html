@@ -3,242 +3,433 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Responsive Movie Page</title>
     <script
       src="https://kit.fontawesome.com/b6b5f43622.js"
       crossorigin="anonymous"
     ></script>
     <style>
-     body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif !important;
-}
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif !important;
+        background-color: #121212;
+      }
 
-.mobile {
-  background-color: black;
-  height: 100%;
-  width: 414px;
-  border-radius: 10px;
-  overflow: hidden;
-}
+      .mobile {
+        background-color: black;
+        overflow: hidden;
+      }
 
-.head-icons {
-  height: 40px;
-  width: 414px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
+      .head-icons {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        padding: 0 20px;
+        z-index: 1000;
+      }
 
-.head-icons i {
-  margin: 10px;
-}
+      .head-icons i {
+        margin: 10px;
+      }
 
-.header-image {
-  background-image: url(../public/src/godzilla.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 60vh;
-  width: 100%;
-  background-color: red;
-  border-radius: 10px 10px 0 0;
-  opacity: 0;
-  animation: fadeIn 1.5s forwards;
-  position: relative;
-}
+      .header-image {
+        background-image: url(../public/src/godzilla.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 60vh;
+        background-color: red;
+        opacity: 0;
+        animation: fadeIn 1.5s forwards;
+        position: relative;
+      }
 
-.movie-info {
-  padding: 20px;
-  color: white;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(0deg, black 60%, transparent 90%);
-  position: relative;
-  top: -100px; /* To make it overlap more with the header image */
-  z-index: 1;
-}
+      .movie-info {
+        padding: 20px;
+        color: white;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(0deg, black 70%, transparent 90%);
+        position: relative;
+        top: -100px;
+        z-index: 1;
+      }
 
-.movie-info .top-info {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
+      .movie-info .top-info {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
 
-.movie-info .age-language {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
+      .movie-info .age-language {
+        font-size: 16px;
+        margin-bottom: 10px;
+        display: flex;
+        gap: 8px;
+      }
 
-.movie-info .ratings {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
+      .pill {
+        background-color: #2c2c2c; /* Dark background color */
+        color: #ffffff; /* White text */
+        font-size: 14px; /* Adjust font size */
+        padding: 5px 12px; /* Padding for pill shape */
+        border-radius: 15px; /* Rounded edges for pill shape */
+        border: 1px solid #4a4a4a; /* Light gray border */
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-.book-ticket-btn {
-  background-color: purple;
-  color: white;
-  font-size: 24px;
-  padding: 15px;
-  border: none;
-  border-radius: 5px;
-  width: 100%;
-  cursor: pointer;
-}
+      .movie-info .ratings {
+        font-size: 16px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: start;
+        width: 300px;
+      }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.movie-description{
-    position: relative;
-  top: -100px;
-  padding:20px;
-  padding-top:0;
-}
-/* Reviews Section Styling */
-.reviews {
-    position: relative;
-    top: -80px;
-    padding: 20px;
-    color: white;
-}
+      .book-ticket-btn {
+        background-color: #6a0dad; /* Richer purple color */
+        color: white;
+        font-size: 25px;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 25px;
+        width: 100%;
+        max-width: 500px;
+        height: 80px;
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.1s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-.review-item {
-    margin-bottom: 15px;
-}
+      .book-ticket-btn i {
+        font-size: 1.2em;
+      }
 
-.review-box {
-    background-color: #333;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+      .book-ticket-btn:hover {
+        background-color: #400980; /* Slightly darker purple */
+      }
 
-.review-box strong {
-    display: block;
-    margin-bottom: 5px;
-}
+      .book-ticket-btn:active {
+        transform: scale(0.98); /* Slightly "presses" button */
+      }
 
-.see-more-comments {
-    background-color: #444;
-    color: white;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
-}
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
 
-.see-more-comments:hover {
-    background-color: #555;
-}
+      .movie-description {
+        position: relative;
+        top: -100px;
+        padding: 20px;
+        padding-bottom: 0;
+        padding-top: 0;
+        color: white;
+      }
+      h1 {
+        font-size: 40px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
 
-/* Similar Movies Section Styling */
-.similar-movies {
-    position: relative;
-    top: -60px;
-    padding: 20px;
-    color: white;
-}
+      /* Reviews Section Styling */
+      .reviews {
+        position: relative;
+        top: -80px;
+        padding: 20px;
+        padding-top: 0;
+        color: white;
+      }
 
-.similar-movie-item {
-    display: inline-block;
-    text-align: center;
-    margin-right: 10px;
-    margin-bottom: 15px;
-}
+      .review-item {
+        margin-bottom: 15px;
+      }
 
-.similar-movie-item img {
-    height: 120px;
-    width: 120px;
-    border-radius: 10px;
-    display: block;
-    margin: 0 auto 5px auto;
-    object-fit: cover;
-    background-color: #333;
-}
+      .review-box {
+        background-color: #333;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-.similar-movie-item span {
-    font-size: 14px;
-    color: white;
-}
+      .review-box strong {
+        display: block;
+        margin-bottom: 5px;
+      }
 
+      .see-more-comments {
+        background-color: #444;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        width: 100%;
+      }
 
+      .see-more-comments:hover {
+        background-color: #555;
+      }
 
+      /* Similar Movies Section Styling */
+      .similar-movies {
+        position: relative;
+        top: -60px;
+        padding: 20px;
+        color: white;
+      }
+
+      .similar-movie-item {
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+        margin-bottom: 15px;
+      }
+
+      .similar-movie-item img {
+        height: 120px;
+        width: 120px;
+        border-radius: 10px;
+        display: block;
+        margin: 0 auto 5px auto;
+        object-fit: cover;
+        background-color: #333;
+      }
+
+      .similar-movie-item span {
+        font-size: 14px;
+        color: white;
+      }
+      .head-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      .debug-box {
+        background-color: green;
+      }
+      /* TABLET VIEW */
+      @media (min-width: 768px) {
+        .book-ticket-btn {
+          margin-bottom: 10px;
+          font-size: 20px;
+          height: 60px;
+        }
+        .movie-info {
+          background: linear-gradient(0deg, black 50%, transparent 90%);
+        }
+        .top-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        #movie-genre {
+          order: 2;
+        }
+        #movie-title {
+          order: 1;
+        }
+        .ratings-and-ticket-button-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          margin-left: -70px;
+          
+        }
+        .debug-box {
+          background-color: yellow;
+        }
+        .container {
+          padding: 40px;
+        }
+        .header-image {
+          height: 50vh;
+        }
+        .movie-info {
+          top: -120px;
+          padding: 30px;
+        }
+        .movie-description {
+          top: -100px;
+        }
+        .reviews {
+          top: -60px;
+        }
+        .similar-movies {
+          top: -40px;
+        }
+        .movie-info {
+          display: flex;
+          flex-direction: row;
+        }
+        h1 {
+          font-size: 70px;
+          margin-bottom: 0px;
+          margin-top: -10px;
+          margin-left: -2px;
+        }
+      }
+      /* COMPUER VIEW */
+      @media (min-width: 1024px) {
+        .debug-box {
+          background-color: red;
+        }
+        .header-image {
+          height: 60vh;
+        }
+        .head-wrapper {
+          display: flex;
+          flex-direction: row;
+        }
+      }
     </style>
-    <body>
-      <div class="mobile">
-        <div class="head-icons">
-          <i class="fa-solid fa-arrow-left fa-xl" style="color:white;margin-left:20px;"></i>
-          <div class="icon-wrapper-div" style="margin-right:20px;">
-            <i class="fa-solid fa-heart fa-xl" style="color:white;"></i>
-            <i class="fa-solid fa-arrow-up-from-bracket fa-xl" style="color:white;"></i>
-          </div>
+  </head>
+  <body>
+    <div
+      class="debug-box"
+      style="
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+      "
+    ></div>
+    <div class="mobile">
+      <div class="head-icons">
+        <i class="fa-solid fa-arrow-left fa-xl" style="color: white"></i>
+        <div class="icon-wrapper-div">
+          <i class="fa-solid fa-heart fa-xl" style="color: white"></i>
+          <i
+            class="fa-solid fa-arrow-up-from-bracket fa-xl"
+            style="color: white"
+          ></i>
         </div>
+      </div>
+      <div class="head-wrapper">
         <div class="header-image"></div>
         <div class="movie-info">
-          <div class="top-info">
-            Genre: Action, Adventure | Length: 2h 10m
-            <h1>Godzilla</h1>
+          <div class="top-and-age-wrapper">
+            <div class="top-info">
+              <p id="movie-genre">Action, Adventure | 2h 10m</p>
+              <h1 id="movie-title">Godzilla</h1>
+            </div>
+            <div class="age-language">
+              <p class="pill">PG-13</p>
+              <p class="pill">English</p>
+            </div>
           </div>
-          <div class="age-language">
-            Age Rating: PG-13 | Language: English
-          </div>
-          <div class="ratings">
-            <span><img src="../public/src/RottenTomLogo.png" style="height:15px; width:50px;"> - 85%</span>
-          </div>
-          <button class="book-ticket-btn">Book Ticket</button>
-          <div class="movie-desc">
-
+          <div class="ratings-and-ticket-button-wrapper">
+            <div class="ratings">
+              <div
+                id="imdb-rating"
+                style="
+                  height: 25px;
+                  width: auto;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <img
+                  src="../public/src/IMDbLogo.png"
+                  alt="imdb logo"
+                  style="height: 25px"
+                />
+                <p style="margin-left: 5px">7.2</p>
+              </div>
+              <p style="margin:0px;margin-left:15px;margin-right:20px">|</p>
+              <div
+                id="rottentom-rating"
+                style="
+                  height: 25px;
+                  width: 100px;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <img
+                  src="../public/src/RottenTomLogo.png"
+                  alt="imdb logo"
+                  style="height: 25px"
+                />
+                <p style="margin-left: 5px">85%</p>
+              </div>
+            </div>
+            <button class="book-ticket-btn">
+              <i class="fa-solid fa-ticket-simple"></i> Book Ticket
+            </button>
           </div>
         </div>
-        <div class="movie-description" style="color:white;">
-            <h2 style="margin:none;">Description</h2>
-            <p>In a world where humanity's survival hangs by a thread, an ancient force rises from the depths of the ocean. Godzilla, a massive, powerful creature, emerges as both a savior and a destroyer. As governments and scientists race to understand this unstoppable beast, they are faced with a chilling reality: humanity may no longer be at the top of the food chain. With breathtaking destruction and awe-inspiring spectacle, Godzilla brings to life the ultimate clash between man and monster, where the fate of the world rests on the balance of nature's greatest predator.
+      </div>
+      <div class="movie-description">
+        <h2>Description</h2>
+        <p>
+          In a world where humanity's survival hangs by a thread, an ancient
+          force rises from the depths of the ocean. Godzilla, a massive,
+          powerful creature, emerges as both a savior and a destroyer. As
+          governments and scientists race to understand this unstoppable beast,
+          they are faced with a chilling reality: humanity may no longer be at
+          the top of the food chain. With breathtaking destruction and
+          awe-inspiring spectacle, Godzilla brings to life the ultimate clash
+          between man and monster, where the fate of the world rests on the
+          balance of nature's greatest predator.
+        </p>
+      </div>
+      <div class="reviews">
+        <h2>Reviews</h2>
+        <div class="review-item">
+          <div class="review-box">
+            <strong>John Doe</strong>⭐⭐⭐⭐⭐<br />
+            <p>
+              Amazing visuals and great action sequences! A must-watch for
+              monster fans.
             </p>
+          </div>
         </div>
-<div class="reviews">
-  <h2>Reviews</h2>
-  <div class="review-item">
-      <div class="review-box">
-          <strong>John Doe</strong> - ⭐⭐⭐⭐⭐<br>
-          <p>Amazing visuals and great action sequences! A must-watch for monster fans.</p>
+        <div class="review-item">
+          <div class="review-box">
+            <strong>Jane Smith</strong>⭐⭐⭐⭐⭐<br />
+            <p>
+              Thrilling movie with great suspense. Storyline could have been a
+              bit stronger, though.
+            </p>
+          </div>
+        </div>
+        <!-- See More Comments Button -->
+        <button class="see-more-comments">See More Comments</button>
       </div>
-  </div>
-  <div class="review-item">
-      <div class="review-box">
-          <strong>Jane Smith</strong> - ⭐⭐⭐⭐☆<br>
-          <p>Thrilling movie with great suspense. Storyline could have been a bit stronger, though.</p>
+      <div class="similar-movies">
+        <h2>Similar Movies</h2>
+        <div class="similar-movie-item">
+          <img src="../public/src/dark_knight.jpg" alt="Dark Knight" />
+          <span>Dark Knight</span>
+        </div>
+        <div class="similar-movie-item">
+          <img src="../public/src/inception.jpg" alt="Inception" />
+          <span>Inception</span>
+        </div>
       </div>
-  </div>
-  <!-- See More Comments Button -->
-  <button class="see-more-comments">See More Comments</button>
-</div>
-
-
-
-<div class="similar-movies">
-  <h2>Similar Movies</h2>
-  <div class="similar-movie-item">
-      <img src="../public/src/dark_knight.jpg" alt="Dark Knight">
-      <span>Dark Knight</span>
-  </div>
-  <div class="similar-movie-item">
-      <img src="../public/src/inception.jpg" alt="Inception">
-      <span>Inception</span>
-  </div>
-</div>
-
-      </div>
-    </body>
-  </html>
-  
+    </div>
+  </body>
+</html>
