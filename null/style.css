@@ -18,8 +18,8 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 100%;
-        padding: 0 20px;
+        width: 95%;
+        margin-top:5px;
         z-index: 1000;
       }
 
