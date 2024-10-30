@@ -16,7 +16,7 @@
 
 .mobile {
   background-color: black;
-  height: 896px;
+  height: 100%;
   width: 414px;
   border-radius: 10px;
   overflow: hidden;
@@ -43,7 +43,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 50%;
+  height: 60vh;
   width: 100%;
   background-color: red;
   border-radius: 10px 10px 0 0;
@@ -102,6 +102,39 @@
   padding:20px;
   padding-top:0;
 }
+.reviews {
+    position: relative;
+    top: -80px;
+    padding: 20px;
+    color: white;
+}
+
+.review-item {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.similar-movies {
+    position: relative;
+    top: -60px;
+    padding: 20px;
+    color: white;
+}
+
+.similar-movie-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.similar-movie-item img {
+    height: 80px;
+    width: 60px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
 
     </style>
     <body>
@@ -135,6 +168,32 @@
             <p>In a world where humanity's survival hangs by a thread, an ancient force rises from the depths of the ocean. Godzilla, a massive, powerful creature, emerges as both a savior and a destroyer. As governments and scientists race to understand this unstoppable beast, they are faced with a chilling reality: humanity may no longer be at the top of the food chain. With breathtaking destruction and awe-inspiring spectacle, Godzilla brings to life the ultimate clash between man and monster, where the fate of the world rests on the balance of nature's greatest predator.
             </p>
         </div>
+
+<div class="reviews">
+  <h2>Reviews</h2>
+  <div class="review-item">
+      <strong>John Doe</strong> - ⭐⭐⭐⭐⭐<br>
+      <p>Amazing visuals and great action sequences! A must-watch for monster fans.</p>
+  </div>
+  <div class="review-item">
+      <strong>Jane Smith</strong> - ⭐⭐⭐⭐☆<br>
+      <p>Thrilling movie with great suspense. Storyline could have been a bit stronger, though.</p>
+  </div>
+</div>
+
+
+<div class="similar-movies">
+  <h2>Similar Movies</h2>
+  <div class="similar-movie-item">
+      <img src="../public/src/dark_knight.jpg" alt="Dark Knight">
+      <span>Dark Knight</span>
+  </div>
+  <div class="similar-movie-item">
+      <img src="../public/src/inception.jpg" alt="Inception">
+      <span>Inception</span>
+  </div>
+</div>
+
       </div>
     </body>
   </html>
