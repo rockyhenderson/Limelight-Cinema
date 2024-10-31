@@ -48,6 +48,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -55,23 +56,26 @@ $conn->close();
     <script src="https://kit.fontawesome.com/b6b5f43622.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../public/css/styles.css">
 </head>
+
 <body>
     <div class="mobile">
         <div class="head-icons">
-            <i class="fa-solid fa-arrow-left fa-2xl" style="color: white"></i>
+            <i class="fa-solid fa-arrow-left fa-2xl" style="color: white" id="go-back"></i>
             <div class="icon-wrapper-div">
                 <i class="fa-solid fa-heart fa-2xl" style="color: white"></i>
                 <i class="fa-solid fa-arrow-up-from-bracket fa-2xl" style="color: white"></i>
             </div>
         </div>
         <div class="head-wrapper">
-        <div class="header-image" style="background-image: url('../public/src/<?php echo htmlspecialchars($photo_url); ?>');"></div>
+            <div class="header-image"
+                style="background-image: url('../public/src/<?php echo htmlspecialchars($photo_url); ?>');"></div>
             <div class="movie-head-wrapper">
                 <div class="movie-info">
                     <div id="movie-title-container">
                         <h1 id="movie-title"><?php echo htmlspecialchars($title); ?></h1>
                     </div>
-                    <p id="movie-genre"><?php echo htmlspecialchars(implode(', ', $genres_array)); ?> | <?php echo htmlspecialchars($runtime); ?>m</p>
+                    <p id="movie-genre"><?php echo htmlspecialchars(implode(', ', $genres_array)); ?> |
+                        <?php echo htmlspecialchars($runtime); ?>m</p>
 
                     <div class="info-wrapper">
                         <div class="age-language">
@@ -85,7 +89,8 @@ $conn->close();
                             </div>
                             <p style="margin: 0px; margin-left: 15px; margin-right: 20px">|</p>
                             <div id="rottentom-rating" style="display: flex; align-items: center; height: 25px">
-                                <img src="../public/src/RottenTomLogo.png" alt="Rotten Tomatoes logo" style="height: 25px" />
+                                <img src="../public/src/RottenTomLogo.png" alt="Rotten Tomatoes logo"
+                                    style="height: 25px" />
                                 <p style="margin-left: 5px"><?php echo htmlspecialchars($rotten_tomatoes); ?>%</p>
                             </div>
                         </div>
@@ -133,6 +138,9 @@ $conn->close();
     </div>
 </body>
 <script>
+    document.getElementById("go-back").addEventListener("click", () => {
+        history.back();
+    });
     function adjustFontSizeToFit(element) {
         const parent = element.parentElement;
         let currentFontSize = 100; // Start with a reasonably large font size
@@ -164,4 +172,5 @@ $conn->close();
         adjustFontSizeToFit(headerElement);
     });
 </script>
+
 </html>

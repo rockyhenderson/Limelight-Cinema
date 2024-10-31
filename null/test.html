@@ -8,9 +8,45 @@
       src="https://kit.fontawesome.com/b6b5f43622.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="ticketModal" class="modal">
+      <span class="close-button" id="closeModal">&times;</span>
+      <div class="modal-content">
+        <div class="modalLeft"></div>
+        <div class="modalRight">
+          <h2>Godzilla</h2>
+          <h3>Confirm your booking</h3>
+
+          <!-- Ticket Details -->
+          <div class="ticket-details">
+            <p>
+              <strong>Movie:</strong> <span id="movieTitle">Inception</span>
+            </p>
+            <p><strong>Date:</strong> <span id="movieDate">2025-01-15</span></p>
+            <p><strong>Time:</strong> <span id="movieTime">7:00 PM</span></p>
+            <p><strong>Hall:</strong> <span id="movieHall">Hall 1</span></p>
+          </div>
+
+          <!-- Seat Selection -->
+          <div class="seat-selection">
+            <label for="seats">Select Seats:</label>
+            <select id="seats" name="seats">
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="A3">A3</option>
+              <!-- Add more seats as needed -->
+            </select>
+          </div>
+
+          <!-- Confirm Button -->
+          <button id="confirmBookingButton" class="confirm-button">
+            Confirm Booking
+          </button>
+        </div>
+      </div>
+    </div>
     <div
       class="debug-box"
       style="
@@ -75,7 +111,7 @@
                 </div>
               </div>
             </div>
-            <button class="book-ticket-btn">
+            <button class="book-ticket-btn" onclick="bookTicket()">
               <i class="fa-solid fa-ticket-simple"></i> Buy Ticket
             </button>
           </div>
@@ -130,6 +166,8 @@
     </div>
   </body>
   <script>
+    const ticketModal = document.getElementById("ticketModal");
+    const closeModal = document.getElementById("closeModal");
     function adjustFontSizeToFit(element) {
       const parent = element.parentElement;
       let currentFontSize = 100; // Start with a reasonably large font size
@@ -169,11 +207,23 @@
       adjustFontSizeToFit(headerElement);
     });
 
-    // Optional: Re-adjust when the window size changes
     window.addEventListener("resize", () => {
       const headerElement = document.getElementById("movie-title");
       console.log("Window resized. Adjusting font size again...");
       adjustFontSizeToFit(headerElement);
+    });
+    function bookTicket() {
+      document.getElementById("ticketModal").style.display = "block";
+    }
+
+    closeModal.addEventListener("click", () => {
+      ticketModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target === ticketModal) {
+        ticketModal.style.display = "none";
+      }
     });
   </script>
 </html>
