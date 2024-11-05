@@ -1,158 +1,641 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #161620;
-      color: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .navbar {
-      width: 100%;
-      height: 60px;
-      background-color: #29292F;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .navbar h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: #FFFFFF;
-    }
-
-    .tabs {
-      display: flex;
-      flex-direction: row;
-      gap: 15px;
-      margin-left: auto;
-    }
-
-    .tab-button {
-      background: none;
-      border: none;
-      color: #8E8E8E;
-      font-size: 1rem;
-      text-align: left;
-      padding: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .tab-button:hover {
-      background-color: #404040;
-    }
-
-    .tab-button.selected {
-      color: #FFFFFF;
-    }
-
-    .content {
-      margin-top: 80px;
-      padding: 20px;
-      width: 100%;
-    }
-
-    @media (min-width: 992px) {
-      body {
-        flex-direction: row;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap"
+    />
+    <script
+      src="https://kit.fontawesome.com/b6b5f43622.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .th-top {
+        min-width: 200px;
+      }
+      .fa-angle-up,
+      .fa-angle-down {
+        color: #ffffff;
+        display: none;
+        transition: opacity 0.3s ease;
+        margin-left: 10px; /* Spacing between title and icon */
+      }
+      .sort-asc .fa-angle-up {
+        display: inline;
+      }
+      .sort-desc .fa-angle-down {
+        display: inline;
+      }
+      .user-controls {
+        display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
-        
+        align-items: center;
+        margin-bottom: 20px;
+        gap: 20px;
+      }
+
+      .user-controls-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .filter-input {
+        padding: 10px;
+        font-size: 1rem;
+        background-color: #29292f;
+        border: none;
+        color: #ffffff;
+        border-radius: 5px;
+      }
+
+      .add-user-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        background-color: #404040;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .add-user-button:hover {
+        background-color: #8e8e8e;
+      }
+
+      .user-table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow-x: auto;
+        display: block;
+      }
+
+      .user-table th,
+      .user-table td {
+        padding: 10px;
+        border: 1px solid #404040;
+        text-align: left;
+      }
+
+      .user-table th {
+        background-color: #29292f;
+        cursor: pointer;
+      }
+
+      .user-table td {
+        background-color: #1f1f28;
+      }
+
+      .password-container {
+        display: flex;
+        align-items: center;
+        width: 150px;
+      }
+
+      .password {
+        flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .fa-eye,
+      .fa-eye-slash {
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        background-color: #161620;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
       }
 
       .navbar {
-        width: 25%;
-        height: 100vh;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 20px;
+        width: 100%;
+        height: 60px;
+        background-color: #29292f;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
 
       .navbar h1 {
-        margin-bottom: 40px;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #ffffff;
       }
 
       .tabs {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        margin-left: auto;
+      }
+
+      .tab-button {
+        background: none;
+        border: none;
+        color: #8e8e8e;
+        font-size: 1rem;
+        text-align: left;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .tab-button:hover {
+        background-color: #404040;
+      }
+
+      .tab-button.selected {
+        color: #ffffff;
       }
 
       .content {
-        margin-top: 0;
-        width:75%;
-        height:100vh;
+        margin-top: 80px;
+        padding: 20px;
+        width: 100%;
       }
-    }
+      .tab-content {
+        display: none;
+      }
 
-    .tab-content {
-      display: none;
-    }
+      .tab-content.active {
+        display: block;
+      }
+      .th-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
 
-    .tab-content.active {
-      display: block;
-    }
-  </style>
-  <title>Limelight Cinema Admin Panel</title>
-</head>
-<body>
+      .dropdown {
+        position: relative;
+      }
 
-  <div class="navbar">
-    <h1>limelightcinemaADMIN</h1>
-    <div class="tabs">
-      <button class="tab-button" onclick="showTab('overview')">Overview</button>
-      <button class="tab-button" onclick="showTab('movies')">Movies</button>
-      <button class="tab-button" onclick="showTab('users')">Users</button>
-      <button class="tab-button" onclick="showTab('comments')">Comments</button>
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #29292f;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 1;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .dropdown-content label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .user-controls {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .user-controls-wrapper {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .add-user-button {
+          align-self: flex-start;
+        }
+      }
+
+      @media (min-width: 992px) {
+        body {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        .navbar {
+          width: 25%;
+          height: 100vh;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          padding: 20px;
+        }
+
+        .navbar h1 {
+          margin-bottom: 40px;
+        }
+
+        .tabs {
+          flex-direction: column;
+          width: 100%;
+          margin-top: 20px;
+        }
+
+        .content {
+          margin-top: 0;
+          width: 75%;
+          height: 100vh;
+        }
+      }
+    </style>
+    <title>Limelight Cinema Admin Panel</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <h1>limelightcinemaADMIN</h1>
+      <div class="tabs">
+        <button class="tab-button" onclick="showTab('overview')">
+          Overview
+        </button>
+        <button class="tab-button" onclick="showTab('movies')">Movies</button>
+        <button class="tab-button" onclick="showTab('users')">Users</button>
+        <button class="tab-button" onclick="showTab('comments')">
+          Comments
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="content">
-    <div id="overview" class="tab-content active">
-      <h2>Overview</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt.</p>
+    <div class="content">
+      <div id="overview" class="tab-content active">
+        <h2>Overview</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+          tincidunt.
+        </p>
+      </div>
+      <div id="movies" class="tab-content">
+        <h2>Movies</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          egestas sapien.
+        </p>
+      </div>
+      <div id="users" class="tab-content">
+        <h2>Users</h2>
+        <div class="user-controls">
+          <div class="user-controls-wrapper">
+            <input
+              type="text"
+              class="filter-input"
+              placeholder="Search users..."
+              onkeyup="filterUsers()"
+            />
+            <div class="dropdown">
+              <button class="add-user-button">Filter</button>
+              <div class="dropdown-content">
+                <label>
+                  <input
+                    type="checkbox"
+                    onclick="toggleColumnVisibility(0)"
+                    checked
+                  />
+                  Username
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    onclick="toggleColumnVisibility(1)"
+                    checked
+                  />
+                  Email
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    onclick="toggleColumnVisibility(3)"
+                    checked
+                  />
+                  First Name
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    onclick="toggleColumnVisibility(4)"
+                    checked
+                  />
+                  Last Name
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    onclick="toggleColumnVisibility(5)"
+                    checked
+                  />
+                  DOB
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    onclick="toggleColumnVisibility(6)"
+                    checked
+                  />
+                  Date Registered
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="add-user-button">Add New User</button>
+        </div>
+        <i>Click a header to sort</i>
+        <div style="overflow-x: auto">
+          <table class="user-table">
+            <thead>
+              <tr>
+                <th>Edit</th>
+                <th onclick="sortTable(0, this)" class="th-top">
+                  <div class="th-wrapper">
+                    Username
+                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="fa-solid fa-angle-down"></i>
+                  </div>
+                </th>
+                <th onclick="sortTable(1, this)" class="th-top">
+                  <div class="th-wrapper">
+                    Email
+                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="fa-solid fa-angle-down"></i>
+                  </div>
+                </th>
+                <th>Password</th>
+                <th onclick="sortTable(3, this)" class="th-top">
+                  <div class="th-wrapper">
+                    First Name
+                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="fa-solid fa-angle-down"></i>
+                  </div>
+                </th>
+                <th onclick="sortTable(4, this)" class="th-top">
+                  <div class="th-wrapper">
+                    Last Name
+                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="fa-solid fa-angle-down"></i>
+                  </div>
+                </th>
+                <th onclick="sortTable(5, this)" class="th-top">
+                  <div class="th-wrapper">
+                    DOB
+                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="fa-solid fa-angle-down"></i>
+                  </div>
+                </th>
+                <th onclick="sortTable(6, this)" class="th-top">
+                  <div class="th-wrapper">
+                    Date Registered
+                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="fa-solid fa-angle-down"></i>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="fa-solid fa-edit" onclick="editUser()"></i></td>
+                <td>alex_king</td>
+                <td>alex.king@example.com</td>
+                <td>
+                  <div class="password-container">
+                    <span class="password">********</span>
+                    <i
+                      class="fa-solid fa-eye-slash"
+                      data-password="MyP@ssw0rd1"
+                      onclick="togglePassword(this)"
+                    ></i>
+                  </div>
+                </td>
+                <td>Alex</td>
+                <td>King</td>
+                <td>1989-11-11</td>
+                <td>2023-05-25</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-edit" onclick="editUser()"></i></td>
+                <td>sarah_connor</td>
+                <td>sarah.connor@example.com</td>
+                <td>
+                  <div class="password-container">
+                    <span class="password">********</span>
+                    <i
+                      class="fa-solid fa-eye-slash"
+                      data-password="Term1n@t0r"
+                      onclick="togglePassword(this)"
+                    ></i>
+                  </div>
+                </td>
+                <td>Sarah</td>
+                <td>Connor</td>
+                <td>1986-08-29</td>
+                <td>2023-06-30</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-edit" onclick="editUser()"></i></td>
+                <td>michael_scott</td>
+                <td>michael.scott@dundermifflin.com</td>
+                <td>
+                  <div class="password-container">
+                    <span class="password">********</span>
+                    <i
+                      class="fa-solid fa-eye-slash"
+                      data-password="W0rldBestB0ss"
+                      onclick="togglePassword(this)"
+                    ></i>
+                  </div>
+                </td>
+                <td>Michael</td>
+                <td>Scott</td>
+                <td>1965-03-15</td>
+                <td>2023-07-01</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-edit" onclick="editUser()"></i></td>
+                <td>john_doe</td>
+                <td>john.doe@example.com</td>
+                <td>
+                  <div class="password-container">
+                    <span class="password">********</span>
+                    <i
+                      class="fa-solid fa-eye-slash"
+                      data-password="AAAAAAAAAAAAa"
+                      onclick="togglePassword(this)"
+                    ></i>
+                  </div>
+                </td>
+                <td>John</td>
+                <td>Doe</td>
+                <td>1990-05-15</td>
+                <td>2023-01-12</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-edit" onclick="editUser()"></i></td>
+                <td>jane_smith</td>
+                <td>jane.smith@example.com</td>
+                <td>
+                  <div class="password-container">
+                    <span class="password">********</span>
+                    <i
+                      class="fa-solid fa-eye-slash"
+                      data-password="Passswo1rddd"
+                      onclick="togglePassword(this)"
+                    ></i>
+                  </div>
+                </td>
+                <td>Jane</td>
+                <td>Smith</td>
+                <td>1985-10-22</td>
+                <td>2023-03-05</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-edit" onclick="editUser()"></i></td>
+                <td>emily_j</td>
+                <td>emily.johnson@example.com</td>
+                <td>
+                  <div class="password-container">
+                    <span class="password">********</span>
+                    <i
+                      class="fa-solid fa-eye-slash"
+                      data-password="Passswo1rd"
+                      onclick="togglePassword(this)"
+                    ></i>
+                  </div>
+                </td>
+                <td>Emily</td>
+                <td>Johnson</td>
+                <td>1992-07-30</td>
+                <td>2023-04-18</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="comments" class="tab-content">
+        <h2>Comments</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+          tristique turpis vel lectus fermentum tincidunt.
+        </p>
+      </div>
     </div>
-    <div id="movies" class="tab-content">
-      <h2>Movies</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse egestas sapien.</p>
-    </div>
-    <div id="users" class="tab-content">
-      <h2>Users</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquet metus sit amet nisi elementum.</p>
-    </div>
-    <div id="comments" class="tab-content">
-      <h2>Comments</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique turpis vel lectus fermentum tincidunt.</p>
-    </div>
-  </div>
 
-  <script>
-    function showTab(tabId) {
-      const tabContents = document.querySelectorAll('.tab-content');
-      const tabButtons = document.querySelectorAll('.tab-button');
+    <script>
+      let sortOrder = 1; // Start with ascending order by default
 
-      tabContents.forEach(tabContent => {
-        tabContent.classList.remove('active');
-      });
+      function sortTable(columnIndex, thElement) {
+        const table = document.querySelector(".user-table tbody");
+        const rows = Array.from(table.rows);
 
-      tabButtons.forEach(tabButton => {
-        tabButton.classList.remove('selected');
-      });
+        rows.sort((a, b) => {
+          const cellA = a.cells[columnIndex].textContent.trim();
+          const cellB = b.cells[columnIndex].textContent.trim();
 
-      document.getElementById(tabId).classList.add('active');
-      document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('selected');
-    }
-  </script>
-</body>
+          if (columnIndex === 5 || columnIndex === 6) {
+            return sortOrder * (new Date(cellA) - new Date(cellB));
+          }
+          return (
+            sortOrder * cellA.localeCompare(cellB, undefined, { numeric: true })
+          );
+        });
+
+        rows.forEach((row) => table.appendChild(row));
+
+        // Update sorting icons
+        document.querySelectorAll("th.th-top").forEach((th) => {
+          th.classList.remove("sort-asc", "sort-desc");
+          th.style.backgroundColor = "";
+        });
+        thElement.classList.add(sortOrder === 1 ? "sort-asc" : "sort-desc");
+        thElement.style.backgroundColor = "#6A0DAD";
+
+        // Toggle sort order for the next click
+        sortOrder *= -1;
+      }
+
+      function showTab(tabId) {
+        const tabContents = document.querySelectorAll(".tab-content");
+        const tabButtons = document.querySelectorAll(".tab-button");
+
+        tabContents.forEach((tabContent) => {
+          tabContent.classList.remove("active");
+        });
+
+        tabButtons.forEach((tabButton) => {
+          tabButton.classList.remove("selected");
+        });
+
+        document.getElementById(tabId).classList.add("active");
+        document
+          .querySelector(`[onclick="showTab('${tabId}')"]`)
+          .classList.add("selected");
+      }
+
+      function togglePassword(element) {
+        const passwordSpan = element.previousElementSibling;
+        const currentPassword = element.dataset.password;
+
+        if (passwordSpan.textContent === "********") {
+          passwordSpan.textContent = currentPassword;
+          element.classList.remove("fa-eye-slash");
+          element.classList.add("fa-eye");
+        } else {
+          passwordSpan.textContent = "********";
+          element.classList.remove("fa-eye");
+          element.classList.add("fa-eye-slash");
+        }
+      }
+      function toggleColumnVisibility(columnIndex) {
+        // Adjust columnIndex to skip the first column (edit button)
+        const adjustedIndex = columnIndex + 1;
+
+        const th = document.querySelectorAll(".user-table th")[adjustedIndex];
+        const td = document.querySelectorAll(
+          `.user-table tbody tr td:nth-child(${adjustedIndex + 1})`
+        );
+
+        if (th.style.display === "none") {
+          th.style.display = "";
+          td.forEach((cell) => (cell.style.display = ""));
+        } else {
+          th.style.display = "none";
+          td.forEach((cell) => (cell.style.display = "none"));
+        }
+      }
+
+      function filterUsers() {
+        const input = document
+          .querySelector(".filter-input")
+          .value.toLowerCase();
+        const rows = document.querySelectorAll(".user-table tbody tr");
+
+        rows.forEach((row) => {
+          const cells = row.querySelectorAll("td");
+          let match = false;
+          for (let i = 0; i < cells.length; i++) {
+            if (i === 2) continue; // Skip the password column
+            if (cells[i].textContent.toLowerCase().includes(input)) {
+              match = true;
+              break;
+            }
+          }
+          row.style.display = match ? "" : "none";
+        });
+      }
+      function editUser() {
+        alert("Test");
+      }
+    </script>
+  </body>
 </html>
