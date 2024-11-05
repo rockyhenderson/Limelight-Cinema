@@ -1,11 +1,11 @@
 <?php
 // movie_template.php
 
-error_reporting(E_ALL);  // Report all PHP errors
+error_reporting(E_ALL);  // ERROR CODE!!!
 ini_set('display_errors', 1);  // Ensure errors are shown on the page
 
-include '../includes/db_connection.php';  // Include the database connection file
-$conn = connectDB();  // Connect to the database
+include '../includes/db_connection.php';  // Connection File
+$conn = connectDB();  // Connects
 
 // Check if the movie ID is passed in the URL
 if (isset($_GET['id'])) {

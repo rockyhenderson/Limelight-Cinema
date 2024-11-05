@@ -1,6 +1,7 @@
 <?php
 // This file establishes a connection to the MySQL database.
 // It will be included in any page that needs to interact with the database.
+//PUT THE DETAILS IN AN ENV FILE BEFORE SOMEONE STEALS THEM.
 function connectDB() {
     $servername = "localhost";
     $username = "HNCWEBMR10";  // Update with your DB username
