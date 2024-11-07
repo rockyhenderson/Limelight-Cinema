@@ -14,30 +14,30 @@
 
 <body>
   <?php include '../includes/db_connection.php'; ?>
-  <i class="fa-solid fa-burger fa-lg burger" onclick="toggleNav()"></i>
-    <div class="navbar">
-      <div class="nav-top-content">
+  <i class="fa-solid fa-burger fa-xl burger" onclick="toggleNav()"></i>
+  <div class="navbar">
+    <div class="nav-top-content">
       <h1>Limelight<wbr>cinema<wbr>ADMIN</h1>
-        <div class="tabs">
-          <button class="tab-button" onclick="showTab('overview')">
-            Overview
-          </button>
-          <button class="tab-button" onclick="showTab('movies')">Movies</button>
-          <button class="tab-button" onclick="showTab('users')">Users</button>
-          <button class="tab-button" onclick="showTab('comments')">
-            Comments
-          </button>
-        </div>
-      </div>
-      <div class="nav-bottom-content">
-        <div class="profile-photo"></div>
-        <div class="navbar-bottom-text">
-          <i style="margin-top:5px;">Welcome back<br /></i>
-          <h3 style="margin-top:0;">Username</h3>
-        </div>
+      <div class="tabs">
+        <button class="tab-button" onclick="showTab('overview')">
+          Overview
+        </button>
+        <button class="tab-button" onclick="showTab('movies')">Movies</button>
+        <button class="tab-button" onclick="showTab('users')">Users</button>
+        <button class="tab-button" onclick="showTab('comments')">
+          Comments
+        </button>
       </div>
     </div>
-    <div class="debug-box" style="
+    <div class="nav-bottom-content">
+      <div class="profile-photo"></div>
+      <div class="navbar-bottom-text">
+        <i style="margin-top:5px;">Welcome back<br /></i>
+        <h3 style="margin-top:0;">Username</h3>
+      </div>
+    </div>
+  </div>
+  <div class="debug-box" style="
         width: 50px;
         height: 50px;
         position: absolute;
@@ -45,329 +45,346 @@
         left: 50%;
         transform: translateX(-50%);
         z-index: 9999;"></div>
-    <div class="content">
-      <div id="overview" class="tab-content active">
-        <h2>Overview</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-          tincidunt.
-        </p>
-      </div>
-      <div id="movies" class="tab-content">
-        <h2>Movies</h2>
-        <p>
+  <div class="content">
+    <div id="overview" class="tab-content active">
+      <h1>Overview</h1>
+      <p>
+        Snapshot of Key Metrics:
+        Display a few key numbers like total users, total movies, and total bookings.
+        Perhaps a simple bar or pie chart showing ticket sales per day or per movie (if you think this fits within your
+        simplified scope).<br /><br />
 
-          1. **Add New Movie**
-          - Add new movies to the database with details like title, genre, release date, description, rating, and poster
-          image. </br></br>
+        Recent Activity Feed:
+        A list showing recent comments, new user registrations, or movie additions, giving a quick view of what's new.
+        Clicking on an item could take the admin directly to the related section.<br /><br />
 
-          2. **Edit Movie Details**
-          - Modify existing movie information such as title, description, genre, release date, and rating.</br></br>
+        Quick Links or Actions:
+        Provide buttons or links to the most common actions, such as "Add New Movie," "Manage Users," or "View
+        Comments." This could streamline admin workflow by letting them jump right into frequently used
+        tasks.<br /><br />
 
-          3. **Delete Movie**
-          - Remove movies from the database if they are no longer showing.</br></br>
+        System Alerts or Notifications:
+        A small section for system updates or maintenance notifications, if you plan to add any alerts for things like
+        low seat availability or movie listings close to fully booked.<br /><br />
 
-          4. **Manage Showtimes**
-          - Add, update, or delete showtimes for each movie (date, time, cinema hall).</br></br>
+        Search Bar or Filtered View:
+        If there's a search function, having it right on the Overview might be convenient, especially for quick lookups
+        of users or movies.<br /><br />
+      </p>
+    </div>
+    <div id="movies" class="tab-content">
+      <h1>Movies</h1>
+      <p>
 
-          5. **Manage Stock/Tickets**
-          - Update ticket availability for specific showtimes and cinema halls.</br></br>
+        1. **Add New Movie**
+        - Add new movies to the database with details like title, genre, release date, description, rating, and poster
+        image. </br></br>
 
-          6. **Upload/Update Movie Images**
-          - Upload or change poster images for a movie.</br></br>
+        2. **Edit Movie Details**
+        - Modify existing movie information such as title, description, genre, release date, and rating.</br></br>
 
-          7. **Assign Genre(s)**
-          - Assign genres to a movie to help users filter content easily.</br></br>
+        3. **Delete Movie**
+        - Remove movies from the database if they are no longer showing.</br></br>
 
-          8. **Manage Spotlight Section**
-          - Designate movies to be featured in the homepage spotlight section.</br></br>
+        4. **Manage Showtimes**
+        - Add, update, or delete showtimes for each movie (date, time, cinema hall).</br></br>
 
-          9. **Manage Age Restrictions**
-          - Assign and update age ratings for movies to ensure proper age warnings are displayed.</br></br>
-        </p>
-      </div>
-      <div id="users" class="tab-content">
-        <h1 style="padding-left:35px;">Users</h1>
-        <div class="user-database-filter">
-          <div class="user-box-header-content">
-            <h2>User Database</h2>
-            <span class="arrow">&#9660;</span>
-          </div>
-          <div class="user-database-content opened">
-            <div class="user-controls">
-              <div class="user-controls-wrapper">
-                <input type="text" class="filter-input" id="user-filter" placeholder="Search users..."
-                  onkeyup="filterUsers('user-table', 'user-filter')" style="color:black;" />
-                <div class="dropdown">
-                  <button class="add-user-button">Filter</button>
-                  <div class="dropdown-content">
-                    <label>
-                      <input type="checkbox" onclick="toggleUserColumnVisibility(0)" checked />
-                      Username
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleUserColumnVisibility(1)" checked />
-                      Email
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleUserColumnVisibility(3)" checked />
-                      First Name
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleUserColumnVisibility(4)" checked />
-                      Last Name
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleUserColumnVisibility(5)" checked />
-                      DOB
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleUserColumnVisibility(6)" checked />
-                      Date Registered
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="filter-controls-button-wrapper">
-                <button class="add-user-button">Add New User</button>
-              </div>
-            </div>
-            <i>Click a header to sort</i>
-            <div style="overflow-x: auto">
-              <table class="user-table" id="user-table">
-                <thead>
-                  <tr>
-                    <th>Edit</th>
-                    <th onclick="sortUserTable(0, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Username
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortUserTable(1, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Email
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th>Password</th>
-                    <th onclick="sortUserTable(3, this)" class="th-top">
-                      <div class="th-wrapper">
-                        First Name
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortUserTable(4, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Last Name
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortUserTable(5, this)" class="th-top">
-                      <div class="th-wrapper">
-                        DOB
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortUserTable(6, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Date Registered
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $conn = connectDB();
+        5. **Manage Stock/Tickets**
+        - Update ticket availability for specific showtimes and cinema halls.</br></br>
 
-                  if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
-                  }
+        6. **Upload/Update Movie Images**
+        - Upload or change poster images for a movie.</br></br>
 
-                  $sql = "SELECT username, email, first_name, password, last_name, DOB, date_registered FROM users WHERE is_admin = 0";
-                  $result = $conn->query($sql);
+        7. **Assign Genre(s)**
+        - Assign genres to a movie to help users filter content easily.</br></br>
 
-                  if (!$result) {
-                    die("Query failed: " . $conn->error);
-                  }
+        8. **Manage Spotlight Section**
+        - Designate movies to be featured in the homepage spotlight section.</br></br>
 
-                  if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                      echo "<tr>";
-                      echo "<td><i class='fa-solid fa-edit' onclick='editUser(this)'></i></td>";
-                      echo "<td>" . htmlspecialchars($row['username']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-                      echo "<td>";
-                      echo "<div class='password-container'>";
-                      echo "<span class='password'>********</span>";
-                      echo "<i class='fa-solid fa-eye-slash' data-password='" . htmlspecialchars($row['password']) . "' onclick='togglePassword(this)'></i>";
-                      echo "</div>";
-                      echo "</td>";
-                      echo "<td>" . htmlspecialchars($row['first_name']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['DOB']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['date_registered']) . "</td>";
-                      echo "</tr>";
-                    }
-                  } else {
-                    echo "<tr><td colspan='8'>No users found</td></tr>";
-                  }
-
-                  $conn->close();
-                  ?>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
+        9. **Manage Age Restrictions**
+        - Assign and update age ratings for movies to ensure proper age warnings are displayed.</br></br>
+      </p>
+    </div>
+    <div id="users" class="tab-content">
+      <h1 style="padding-left:35px;">Users</h1>
+      <div class="user-database-filter">
+        <div class="user-box-header-content">
+          <h2>User Database</h2>
+          <span class="arrow">&#9660;</span>
         </div>
-
-        <div class="admin-database-filter">
-          <div class="admin-box-header-content">
-            <h2>Admin Database</h2>
-            <span class="arrow">&#9660;</span>
-          </div>
-          <div class="admin-database-content opened">
-            <div class="admin-controls">
-              <div class="admin-controls-wrapper">
-                <input type="text" class="filter-input" id="admin-filter" placeholder="Search Admins..."
-                  onkeyup="filterAdmins('admin-table', 'admin-filter')" />
-                <div class="dropdown">
-                  <button class="add-admin-button">Filter</button>
-                  <div class="dropdown-content">
-                    <label>
-                      <input type="checkbox" onclick="toggleAdminColumnVisibility(0)" checked />
-                      Username
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleAdminColumnVisibility(1)" checked />
-                      Email
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleAdminColumnVisibility(3)" checked />
-                      First Name
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleAdminColumnVisibility(4)" checked />
-                      Last Name
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleAdminColumnVisibility(5)" checked />
-                      DOB
-                    </label>
-                    <label>
-                      <input type="checkbox" onclick="toggleAdminColumnVisibility(6)" checked />
-                      Date Registered
-                    </label>
-                  </div>
+        <div class="user-database-content opened">
+          <div class="user-controls">
+            <div class="user-controls-wrapper">
+              <input type="text" class="filter-input" id="user-filter" placeholder="Search users..."
+                onkeyup="filterUsers('user-table', 'user-filter')" style="color:black;" />
+              <div class="dropdown">
+                <button class="add-user-button">Filter</button>
+                <div class="dropdown-content">
+                  <label>
+                    <input type="checkbox" onclick="toggleUserColumnVisibility(0)" checked />
+                    Username
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleUserColumnVisibility(1)" checked />
+                    Email
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleUserColumnVisibility(3)" checked />
+                    First Name
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleUserColumnVisibility(4)" checked />
+                    Last Name
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleUserColumnVisibility(5)" checked />
+                    DOB
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleUserColumnVisibility(6)" checked />
+                    Date Registered
+                  </label>
                 </div>
               </div>
-              <button class="add-admin-button">Add New Admin</button>
             </div>
-            <i>Click a header to sort</i>
-            <div style="overflow-x: auto">
-              <table class="user-table" id="admin-table">
-                <thead>
-                  <tr>
-                    <th onclick="sortAdminTable(0, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Username
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortAdminTable(1, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Email
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th>Password</th>
-                    <th onclick="sortAdminTable(3, this)" class="th-top">
-                      <div class="th-wrapper">
-                        First Name
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortAdminTable(4, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Last Name
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortAdminTable(5, this)" class="th-top">
-                      <div class="th-wrapper">
-                        DOB
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                    <th onclick="sortAdminTable(6, this)" class="th-top">
-                      <div class="th-wrapper">
-                        Date Registered
-                        <i class="fa-solid fa-angle-up"></i>
-                        <i class="fa-solid fa-angle-down"></i>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $conn = connectDB();
-
-                  if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
-                  }
-
-                  $sql = "SELECT username, email, password, first_name, last_name, DOB, date_registered FROM users WHERE is_admin = 1";
-                  $result = $conn->query($sql);
-
-                  if (!$result) {
-                    die("Query failed: " . $conn->error);
-                  }
-
-                  if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                      echo "<tr>";
-                      echo "<td>" . htmlspecialchars($row['username']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-                      echo "<td>";
-                      echo "<div class='password-container'>";
-                      echo "<span class='password'>********</span>";
-                      echo "<i class='fa-solid fa-eye-slash' data-password='" . htmlspecialchars($row['password']) . "' onclick='togglePassword(this)'></i>";
-                      echo "</div>";
-                      echo "</td>";
-
-                      echo "<td>" . htmlspecialchars($row['first_name']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['DOB']) . "</td>";
-                      echo "<td>" . htmlspecialchars($row['date_registered']) . "</td>";
-                      echo "</tr>";
-                    }
-                  } else {
-                    echo "<tr><td colspan='8'>No users found</td></tr>";
-                  }
-
-                  $conn->close();
-                  ?>
-
-                </tbody>
-              </table>
+            <div class="filter-controls-button-wrapper">
+              <button class="add-user-button">Add New User</button>
             </div>
+          </div>
+          <i>Click a header to sort</i>
+          <div style="overflow-x: auto">
+            <table class="user-table" id="user-table">
+              <thead>
+                <tr>
+                  <th>Edit</th>
+                  <th onclick="sortUserTable(0, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Username
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortUserTable(1, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Email
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th>Password</th>
+                  <th onclick="sortUserTable(3, this)" class="th-top">
+                    <div class="th-wrapper">
+                      First Name
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortUserTable(4, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Last Name
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortUserTable(5, this)" class="th-top">
+                    <div class="th-wrapper">
+                      DOB
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortUserTable(6, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Date Registered
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $conn = connectDB();
+
+                if (!$conn) {
+                  die("Connection failed: " . mysqli_connect_error());
+                }
+
+                $sql = "SELECT username, email, first_name, password, last_name, DOB, date_registered FROM users WHERE is_admin = 0";
+                $result = $conn->query($sql);
+
+                if (!$result) {
+                  die("Query failed: " . $conn->error);
+                }
+
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td><i class='fa-solid fa-edit' onclick='editUser(this)'></i></td>";
+                    echo "<td>" . htmlspecialchars($row['username']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                    echo "<td>";
+                    echo "<div class='password-container'>";
+                    echo "<span class='password'>********</span>";
+                    echo "<i class='fa-solid fa-eye-slash' data-password='" . htmlspecialchars($row['password']) . "' onclick='togglePassword(this)'></i>";
+                    echo "</div>";
+                    echo "</td>";
+                    echo "<td>" . htmlspecialchars($row['first_name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DOB']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['date_registered']) . "</td>";
+                    echo "</tr>";
+                  }
+                } else {
+                  echo "<tr><td colspan='8'>No users found</td></tr>";
+                }
+
+                $conn->close();
+                ?>
+
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-      <!-- Modal for Editing User -->
+
+      <div class="admin-database-filter">
+        <div class="admin-box-header-content">
+          <h2>Admin Database</h2>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="admin-database-content opened">
+          <div class="admin-controls">
+            <div class="admin-controls-wrapper">
+              <input type="text" class="filter-input" id="admin-filter" placeholder="Search Admins..."
+                onkeyup="filterAdmins('admin-table', 'admin-filter')" />
+              <div class="dropdown">
+                <button class="add-admin-button">Filter</button>
+                <div class="dropdown-content">
+                  <label>
+                    <input type="checkbox" onclick="toggleAdminColumnVisibility(0)" checked />
+                    Username
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleAdminColumnVisibility(1)" checked />
+                    Email
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleAdminColumnVisibility(3)" checked />
+                    First Name
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleAdminColumnVisibility(4)" checked />
+                    Last Name
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleAdminColumnVisibility(5)" checked />
+                    DOB
+                  </label>
+                  <label>
+                    <input type="checkbox" onclick="toggleAdminColumnVisibility(6)" checked />
+                    Date Registered
+                  </label>
+                </div>
+              </div>
+            </div>
+            <button class="add-admin-button">Add New Admin</button>
+          </div>
+          <i>Click a header to sort</i>
+          <div style="overflow-x: auto">
+            <table class="user-table" id="admin-table">
+              <thead>
+                <tr>
+                  <th onclick="sortAdminTable(0, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Username
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortAdminTable(1, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Email
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th>Password</th>
+                  <th onclick="sortAdminTable(3, this)" class="th-top">
+                    <div class="th-wrapper">
+                      First Name
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortAdminTable(4, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Last Name
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortAdminTable(5, this)" class="th-top">
+                    <div class="th-wrapper">
+                      DOB
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                  <th onclick="sortAdminTable(6, this)" class="th-top">
+                    <div class="th-wrapper">
+                      Date Registered
+                      <i class="fa-solid fa-angle-up"></i>
+                      <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $conn = connectDB();
+
+                if (!$conn) {
+                  die("Connection failed: " . mysqli_connect_error());
+                }
+
+                $sql = "SELECT username, email, password, first_name, last_name, DOB, date_registered FROM users WHERE is_admin = 1";
+                $result = $conn->query($sql);
+
+                if (!$result) {
+                  die("Query failed: " . $conn->error);
+                }
+
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['username']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                    echo "<td>";
+                    echo "<div class='password-container'>";
+                    echo "<span class='password'>********</span>";
+                    echo "<i class='fa-solid fa-eye-slash' data-password='" . htmlspecialchars($row['password']) . "' onclick='togglePassword(this)'></i>";
+                    echo "</div>";
+                    echo "</td>";
+
+                    echo "<td>" . htmlspecialchars($row['first_name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DOB']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['date_registered']) . "</td>";
+                    echo "</tr>";
+                  }
+                } else {
+                  echo "<tr><td colspan='8'>No users found</td></tr>";
+                }
+
+                $conn->close();
+                ?>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
       <div id="edit-user-modal" class="modal">
         <div class="modal-content">
           <span class="close-button" onclick="closeEditUserModal()">&times;</span>
@@ -398,17 +415,34 @@
           </form>
         </div>
       </div>
-
-      <div id="comments" class="tab-content">
-        <h2>Comments</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-          tristique turpis vel lectus fermentum tincidunt.
-        </p>
-      </div>
     </div>
-    <script src="js/admin_global.js"></script>
-    <script src="js/admin_user.js"></script>
+    <!-- Modal for Editing User -->
+
+
+    <div id="comments" class="tab-content">
+      <h1>Comments</h1>
+      <p>
+        List of Comments:
+        Display a simple table or list of recent comments with details like the comment text, associated movie title,
+        date posted, and the username of the commenter.<br /><br />
+
+        Filters and Sorting Options:
+        Allow admins to filter by movie title or sort comments by date, user, or even number of replies (if relevant).
+        Sorting options could be useful to find recent or older comments quickly without adding complexity.<br /><br />
+
+        Comment Details View:
+        Clicking on a comment could open a detailed view or modal showing the full comment text and related details.
+        This could include the option to navigate directly to the movie page or user profile associated with the
+        comment.<br /><br />
+
+        Flag Indicator (Optional):
+        You might include a small indicator or icon next to comments that were flagged by users for any reason, just for
+        visibility, but without actual moderation tools.
+      </p>
+    </div>
+  </div>
+  <script src="js/admin_global.js"></script>
+  <script src="js/admin_user.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 function showTab(tabId) {
   const tabContents = document.querySelectorAll(".tab-content");
   const tabButtons = document.querySelectorAll(".tab-button");
+  const navbar = document.querySelectorAll(".navbar");
 
   tabContents.forEach((tabContent) => {
     tabContent.classList.remove("active");
@@ -14,7 +15,14 @@ function showTab(tabId) {
   document
     .querySelector(`[onclick="showTab('${tabId}')"]`)
     .classList.add("selected");
+
+  // Close the navbar when clicking a tab item
+  navbar.forEach(element => {
+    element.classList.remove("navOpen");
+    element.classList.add("navClosed");
+  });
 }
+
 function toggleNav() {
   const navbar = document.querySelectorAll(".navbar");
   navbar.forEach(element => {
