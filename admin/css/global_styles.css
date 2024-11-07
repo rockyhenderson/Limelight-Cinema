@@ -55,6 +55,7 @@ h2 {
   top: 0;
   left: 0;
   width: 60%;
+  max-width:300px;
   height: 100% !important;
   background-color: #29292f;
   display: flex;
@@ -67,8 +68,10 @@ h2 {
 .nav-top-content {
   margin-top: 60px;
   height: auto;
+  max-width:250px;
 }
 .nav-bottom-content {
+  max-width:250px;
   height: 50%;
   align-items: center;
   display: flex;
