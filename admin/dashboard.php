@@ -6,44 +6,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" />
   <script src="https://kit.fontawesome.com/b6b5f43622.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/admin_styles.css">
+  <link rel="stylesheet" href="css/global_styles.css">
+  <link rel="stylesheet" href="css/admin_user_styles.css">
+  <link rel="stylesheet" href="css/admin_movie_styles.css">
   <title>Limelight Cinema Admin Panel</title>
 </head>
 
 <body>
   <?php include '../includes/db_connection.php'; ?>
-  <div class="navbar">
-    <h1>limelightcinemaADMIN</h1>
-    <div class="tabs">
-      <button class="tab-button" onclick="showTab('overview')">
-        Overview
-      </button>
-      <button class="tab-button" onclick="showTab('movies')">Movies</button>
-      <button class="tab-button" onclick="showTab('users')">Users</button>
-      <button class="tab-button" onclick="showTab('comments')">
-        Comments
-      </button>
+  <i class="fa-solid fa-burger fa-lg burger" onclick="toggleNav()"></i>
+    <div class="navbar">
+      <div class="nav-top-content">
+      <h1>Limelight<wbr>cinema<wbr>ADMIN</h1>
+        <div class="tabs">
+          <button class="tab-button" onclick="showTab('overview')">
+            Overview
+          </button>
+          <button class="tab-button" onclick="showTab('movies')">Movies</button>
+          <button class="tab-button" onclick="showTab('users')">Users</button>
+          <button class="tab-button" onclick="showTab('comments')">
+            Comments
+          </button>
+        </div>
+      </div>
+      <div class="nav-bottom-content">
+        <div class="profile-photo"></div>
+        <div class="navbar-bottom-text">
+          <i style="margin-top:5px;">Welcome back<br /></i>
+          <h3 style="margin-top:0;">Username</h3>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="debug-box" style="
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;"></div>
+    <div class="content">
+      <div id="overview" class="tab-content active">
+        <h2>Overview</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+          tincidunt.
+        </p>
+      </div>
+      <div id="movies" class="tab-content">
+        <h2>Movies</h2>
+        <p>
 
-  <div class="content">
-    <div id="overview" class="tab-content active">
-      <h2>Overview</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-        tincidunt.
-      </p>
-    </div>
-    <div id="movies" class="tab-content">
-      <h2>Movies</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        egestas sapien.
-      </p>
-    </div>
-    <div id="users" class="tab-content">
-      <h1 style="padding-left:35px;">Users</h1>
-      <div>
+          1. **Add New Movie**
+          - Add new movies to the database with details like title, genre, release date, description, rating, and poster
+          image. </br></br>
+
+          2. **Edit Movie Details**
+          - Modify existing movie information such as title, description, genre, release date, and rating.</br></br>
+
+          3. **Delete Movie**
+          - Remove movies from the database if they are no longer showing.</br></br>
+
+          4. **Manage Showtimes**
+          - Add, update, or delete showtimes for each movie (date, time, cinema hall).</br></br>
+
+          5. **Manage Stock/Tickets**
+          - Update ticket availability for specific showtimes and cinema halls.</br></br>
+
+          6. **Upload/Update Movie Images**
+          - Upload or change poster images for a movie.</br></br>
+
+          7. **Assign Genre(s)**
+          - Assign genres to a movie to help users filter content easily.</br></br>
+
+          8. **Manage Spotlight Section**
+          - Designate movies to be featured in the homepage spotlight section.</br></br>
+
+          9. **Manage Age Restrictions**
+          - Assign and update age ratings for movies to ensure proper age warnings are displayed.</br></br>
+        </p>
+      </div>
+      <div id="users" class="tab-content">
+        <h1 style="padding-left:35px;">Users</h1>
         <div class="user-database-filter">
           <div class="user-box-header-content">
             <h2>User Database</h2>
@@ -84,7 +128,9 @@
                   </div>
                 </div>
               </div>
-              <button class="add-user-button">Add New User</button>
+              <div class="filter-controls-button-wrapper">
+                <button class="add-user-button">Add New User</button>
+              </div>
             </div>
             <i>Click a header to sort</i>
             <div style="overflow-x: auto">
@@ -361,7 +407,7 @@
         </p>
       </div>
     </div>
-
+    <script src="js/admin_global.js"></script>
     <script src="js/admin_user.js"></script>
 </body>
 

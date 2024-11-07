@@ -271,23 +271,6 @@ function filterUsers(tableId, filterId) {
     row.style.display = match ? "" : "none";
   });
 }
-function showTab(tabId) {
-  const tabContents = document.querySelectorAll(".tab-content");
-  const tabButtons = document.querySelectorAll(".tab-button");
-
-  tabContents.forEach((tabContent) => {
-    tabContent.classList.remove("active");
-  });
-
-  tabButtons.forEach((tabButton) => {
-    tabButton.classList.remove("selected");
-  });
-
-  document.getElementById(tabId).classList.add("active");
-  document
-    .querySelector(`[onclick="showTab('${tabId}')"]`)
-    .classList.add("selected");
-}
 function filterAdmins(tableId, filterId) {
   const input = document.getElementById(filterId).value.toLowerCase();
   const rows = document.querySelectorAll(`#${tableId} tbody tr`);
