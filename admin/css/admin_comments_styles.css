@@ -1,0 +1,293 @@
+.comments {
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+.comment-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.comment-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.comments-filter {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.comments-filter input[type="text"],
+.comments-filter select {
+  padding: 8px 12px;
+  font-size: 0.95em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  transition: all 0.3s ease;
+}
+
+.comments-filter input[type="text"]:focus,
+.comments-filter select:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.comments-filter input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+.comments-filter select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.comments-filter select:focus-visible {
+  outline: none;
+}
+.comment {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+.commet:first-child{
+  border-radius: 15px 15px 0 0;
+}
+.comment:last-child {
+  border-radius: 0 0 15px 15px;
+  border-bottom: none;
+}
+.comment:hover {
+  background-color: #f9f9f9; 
+  transform: scale(1.02); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  color: black;
+}
+
+.profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 15px;
+  transition: all 0.3s ease; /* Smooth transition for hover */
+}
+.comment:hover .profile-photo {
+  transform: scale(1.1); /* Slightly increase the profile photo size on hover */
+}
+
+.comment-details {
+  width:100%;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+.comment-text {
+  font-size: 1em;
+  color: white;
+  margin: 0;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease; /* Smooth transition for text color change */
+}
+.comment:hover .comment-text {
+  color: black; /* Change the comment text color to black on hover */
+}
+
+.comment-meta {
+  font-size: 0.9em;
+  color: #888;
+  transition: color 0.3s ease; /* Smooth transition for text color change */
+}
+.comment:hover .comment-meta {
+  color: black; /* Change meta text color to black on hover */
+}
+
+.view-details {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s ease; /* Smooth transition for link color change */
+}
+.view-details:hover {
+  text-decoration: underline;
+  color: #0056b3; /* Darker blue when hovering over "View Details" */
+}
+
+strong {
+  color: white;
+}
+.comment:hover strong {
+  color: black; /* Change strong text color to black on hover */
+}
+
+/* Modal Container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* On top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+#commentModal{
+  flex-direction: column;
+}
+/* Modal Content Box */
+.modal-content {
+  background-color: var(--secondary-bg);
+  margin: 10% auto; /* Center vertically and horizontally */
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  max-width: 500px;
+  position: relative;
+  color: var(--light-text); /* Ensure all text is readable against dark background */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--light-text);
+  cursor: pointer;
+}
+.modal-details{
+  display: flex;
+  flex-direction: column;
+}
+/* Modal Details */
+.modal-details h2 {
+  margin-top: 0;
+  font-size: 1.8em;
+  color: var(--light-text);
+  display: flex;
+  flex-direction: column;
+  order: 1;
+}
+
+#modalCommentText {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  color: var(--light-text);
+  order:3;
+}
+
+#modalCommentMeta {
+  font-size: 0.9em;
+  color: var(--accent-gray);
+  margin-bottom: 20px;
+  order:2;
+}
+
+/* Delete Button */
+.delete-button {
+  order:4;
+  background-color: var(--danger-bg);
+  color: var(--light-text);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: var(--danger-hover-bg); /* Darker red for hover */
+}
+
+/* Comment Hover Effect */
+.comment {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid var(--accent-light-gray);
+  flex-wrap: wrap;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+.comment:last-child {
+  border-bottom: none;
+}
+.comment:hover {
+  background-color: var(--light-bg); /* Lighter background to make it stand out */
+  transform: scale(1.02); /* Slight scale effect to make it pop */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow to create depth */
+  color: var(--dark-text); /* Change text color to dark for better readability */
+}
+
+.profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--accent-gray);
+  margin-right: 15px;
+  transition: all 0.3s ease; /* Smooth transition for hover */
+}
+.comment:hover .profile-photo {
+  transform: scale(1.1); /* Slightly increase the profile photo size on hover */
+}
+
+.comment-details {
+  flex-grow: 1;
+}
+.comment-text {
+  font-size: 1em;
+  color: var(--light-text);
+  margin: 0;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease; /* Smooth transition for text color change */
+}
+.comment:hover .comment-text {
+  color: var(--dark-text); /* Change the comment text color to dark on hover */
+}
+
+.comment-meta {
+  font-size: 0.9em;
+  color: var(--accent-gray);
+  transition: color 0.3s ease; /* Smooth transition for text color change */
+}
+.comment:hover .comment-meta {
+  color: var(--dark-text); /* Change meta text color to dark on hover */
+}
+
+.view-details {
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s ease; /* Smooth transition for link color change */
+}
+.view-details:hover {
+  text-decoration: underline;
+  color: var(--focus-color); /* Use focus color when hovering over "View Details" */
+}
+
+strong {
+  color: var(--light-text);
+}
+.comment:hover strong {
+  color: var(--dark-text); /* Change strong text color to dark on hover */
+}

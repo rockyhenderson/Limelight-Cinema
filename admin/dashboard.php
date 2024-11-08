@@ -9,11 +9,15 @@
   <link rel="stylesheet" href="css/global_styles.css">
   <link rel="stylesheet" href="css/admin_user_styles.css">
   <link rel="stylesheet" href="css/admin_movie_styles.css">
+  <link rel="stylesheet" href="css/admin_comments_styles.css">
   <title>Limelight Cinema Admin Panel</title>
 </head>
 
 <body>
-  <?php include '../includes/db_connection.php'; ?>
+  <?php
+  include '../includes/db_connection.php';
+  ?>
+
   <i class="fa-solid fa-burger fa-xl burger" onclick="toggleNav()"></i>
   <div class="navbar">
     <div class="nav-top-content">
@@ -28,9 +32,10 @@
           Comments
         </button>
       </div>
+      <script src="js/admin_global.js"></script>
     </div>
     <div class="nav-bottom-content">
-      <div class="profile-photo"></div>
+      <div class="profile-photo" style="margin:0;"></div>
       <div class="navbar-bottom-text">
         <i style="margin-top:5px;">Welcome back<br /></i>
         <h3 style="margin-top:0;">Username</h3>
@@ -74,36 +79,67 @@
     </div>
     <div id="movies" class="tab-content">
       <h1>Movies</h1>
-      <p>
+      <div class="movie-content">
+        <div class="filter-section">
+          <!-- Search Bar -->
+          <div class="search-bar">
+            <input type="text" placeholder="Search for a movie..." id="movieSearch" />
+            <button type="button">Search</button>
+          </div>
 
-        1. **Add New Movie**
-        - Add new movies to the database with details like title, genre, release date, description, rating, and poster
-        image. </br></br>
+          <!-- Genre Filter -->
+          <div class="filter-dropdown">
+            <label for="genreFilter">Genre:</label>
+            <select id="genreFilter">
+              <option value="all">All Genres</option>
+              <option value="action">Action</option>
+              <option value="comedy">Comedy</option>
+              <option value="drama">Drama</option>
+              <option value="fantasy">Fantasy</option>
+              <!-- Add more genres as needed -->
+            </select>
+          </div>
 
-        2. **Edit Movie Details**
-        - Modify existing movie information such as title, description, genre, release date, and rating.</br></br>
+          <!-- Age Rating Filter -->
+          <div class="filter-dropdown">
+            <label for="ageFilter">Age Rating:</label>
+            <select id="ageFilter">
+              <option value="all">All Ages</option>
+              <option value="pg">PG</option>
+              <option value="12">12+</option>
+              <option value="15">15+</option>
+              <option value="18">18+</option>
+            </select>
+          </div>
 
-        3. **Delete Movie**
-        - Remove movies from the database if they are no longer showing.</br></br>
+          <!-- Release Date Sort -->
+          <div class="filter-dropdown">
+            <label for="releaseSort">Sort by:</label>
+            <select id="releaseSort">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+          <div class="add-movie">
+            <button class="add-movie-button">+ Add New Movie</button>
+          </div>
 
-        4. **Manage Showtimes**
-        - Add, update, or delete showtimes for each movie (date, time, cinema hall).</br></br>
-
-        5. **Manage Stock/Tickets**
-        - Update ticket availability for specific showtimes and cinema halls.</br></br>
-
-        6. **Upload/Update Movie Images**
-        - Upload or change poster images for a movie.</br></br>
-
-        7. **Assign Genre(s)**
-        - Assign genres to a movie to help users filter content easily.</br></br>
-
-        8. **Manage Spotlight Section**
-        - Designate movies to be featured in the homepage spotlight section.</br></br>
-
-        9. **Manage Age Restrictions**
-        - Assign and update age ratings for movies to ensure proper age warnings are displayed.</br></br>
-      </p>
+        </div>
+        <div class="movie-wrapper">
+          <div class="movie-card" id="movie-1">
+            <div class="poster-container">
+              <img src="../public/src/filler_url.png" alt="The Enchanted Forest Poster" class="poster" />
+              <div class="overlay-buttons">
+                <button>Edit</button>
+                <button>View Bookings</button>
+              </div>
+            </div>
+            <div class="movie-info">
+              <h3>The Enchanted Forest</h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="users" class="tab-content">
       <h1 style="padding-left:35px;">Users</h1>
@@ -238,8 +274,6 @@
                 } else {
                   echo "<tr><td colspan='8'>No users found</td></tr>";
                 }
-
-                $conn->close();
                 ?>
 
               </tbody>
@@ -377,7 +411,6 @@
                   echo "<tr><td colspan='8'>No users found</td></tr>";
                 }
 
-                $conn->close();
                 ?>
 
               </tbody>
@@ -409,8 +442,8 @@
             <input type="text" id="edit-date-registered" name="date_registered" readonly /><br />
 
             <div class="modal-buttons">
-              <button type="button" class="save-button" onclick="saveUserChanges()">Save</button>
               <button type="button" class="delete-button" onclick="deleteUser()">Delete</button>
+              <button type="button" class="save-button" onclick="saveUserChanges()">Save</button>
             </div>
           </form>
         </div>
@@ -420,29 +453,84 @@
 
 
     <div id="comments" class="tab-content">
-      <h1>Comments</h1>
-      <p>
-        List of Comments:
-        Display a simple table or list of recent comments with details like the comment text, associated movie title,
-        date posted, and the username of the commenter.<br /><br />
+      <div class="comment-header">
+        <h1>Comments</h1>
+        <div class="comments-filter">
+          <input type="text" id="filterByUser" placeholder="Search by User" style="margin:0px;"
+            oninput="filterComments()" />
+          <input type="text" id="filterByMovie" placeholder="Search by Movie" style="margin:0px;"
+            oninput="filterComments()" />
+          <select id="sortOption" onchange="filterComments()">
+            <option value="date">Sort by Date</option>
+            <option value="movie">Sort by Movie</option>
+            <option value="user">Sort by User</option>
+          </select>
+        </div>
+      </div>
+      <div class="comment-body-wrapper" id="commentBody">
+        <?php
+        // Example PHP code to display comments
+        require_once '../includes/db_connection.php';
 
-        Filters and Sorting Options:
-        Allow admins to filter by movie title or sort comments by date, user, or even number of replies (if relevant).
-        Sorting options could be useful to find recent or older comments quickly without adding complexity.<br /><br />
+        $query = "SELECT comments.*, users.username, movies.title AS movie_title
+    FROM comments
+    JOIN users ON comments.user_id = users.id
+    JOIN movies ON comments.movie_id = movies.id
+    ORDER BY comment_date DESC";
 
-        Comment Details View:
-        Clicking on a comment could open a detailed view or modal showing the full comment text and related details.
-        This could include the option to navigate directly to the movie page or user profile associated with the
-        comment.<br /><br />
+        $result = mysqli_query($conn, $query);
 
-        Flag Indicator (Optional):
-        You might include a small indicator or icon next to comments that were flagged by users for any reason, just for
-        visibility, but without actual moderation tools.
-      </p>
+        if (!$result) {
+          echo "Error executing query: " . mysqli_error($conn);
+        } else {
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+              $commentText = htmlspecialchars($row['comment_text']);
+              $commentMeta = "Posted by <strong>" . htmlspecialchars($row['username']) . "</strong> on <strong>" . htmlspecialchars($row['movie_title']) . "</strong> - " . htmlspecialchars($row['comment_date']);
+              $commentDate = htmlspecialchars($row['comment_date']); // Assuming it's in a valid date format
+              $commentId = htmlspecialchars($row['id']); // Assuming the comment ID is in the `id` column
+        
+              echo '
+            <div class="comment" data-id="' . $commentId . '" data-date="' . $commentDate . '">
+                <div class="profile-photo"></div>
+                <div class="comment-details">
+                    <p class="comment-text">"' . $commentText . '"</p>
+                    <p class="comment-meta">' . $commentMeta . '</p>
+                </div>
+                <a href="javascript:void(0);" class="view-details">View Details</a>
+            </div>
+            ';
+            }
+          } else {
+            echo '<p>No comments found.</p>';
+          }
+        }
+        ?>
+
+
+
+        <!-- Modal -->
+        <div id="commentModal" class="modal">
+          <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div class="modal-details">
+              <h2>Comment Details</h2>
+              <p id="modalCommentText"></p>
+              <p id="modalCommentMeta"></p>
+              <button class="delete-button" onclick="deleteComment()">Delete Comment</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
     </div>
   </div>
-  <script src="js/admin_global.js"></script>
+  </div>
   <script src="js/admin_user.js"></script>
+  <script src="js/admin_comments.js"></script>
 </body>
 
 </html>

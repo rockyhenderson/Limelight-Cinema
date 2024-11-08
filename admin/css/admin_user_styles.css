@@ -5,9 +5,9 @@ input[type="date"] {
   width: 95%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--accent-light-gray);
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: var(--light-bg);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   font-size: 1em;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -17,7 +17,7 @@ input[type="date"] {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="date"]:focus {
-  border-color: #66afe9;
+  border-color: var(--focus-color);
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
   outline: none;
 }
@@ -44,17 +44,17 @@ label {
 }
 
 .modal-content {
-  background-color: #29292f;
+  background-color: var(--primary-bg);
   margin: 5% auto;
   padding: 20px;
   border-radius: 10px;
   width: 90%;
   max-width: 600px;
-  color: #ffffff;
+  color: var(--light-text);
 }
 
 .close-button {
-  color: #aaa;
+  color: var(--accent-light-gray);
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -62,7 +62,7 @@ label {
 
 .close-button:hover,
 .close-button:focus {
-  color: #ffffff;
+  color: var(--light-text);
   text-decoration: none;
   cursor: pointer;
 }
@@ -85,34 +85,34 @@ label {
 }
 
 .save-button {
-  background-color: #4caf50;
-  color: #ffffff;
+  background-color: var(--success-bg);
+  color: var(--light-text);
 }
 
 .save-button:hover {
-  background-color: #45a049;
+  background-color: var(--success-hover-bg);
 }
 
 .delete-button {
-  background-color: #f44336;
-  color: #ffffff;
+  background-color: var(--danger-bg);
+  color: var(--light-text);
 }
 
 .delete-button:hover {
-  background-color: #e53935;
+  background-color: var(--danger-hover-bg);
 }
 
 /* User/Admin Content Styles */
 .user-database-filter,
 .admin-database-filter {
-  max-width:1120px;
   transition: max-height 0.5s ease-out, padding 0.5s ease-out;
   overflow: hidden;
-  background-color: #2e2e2e;
+  background-color: var(--secondary-bg);
   height: auto;
   padding: 20px;
   border-radius: 25px;
   width: 95%;
+  max-width: 1120px;
   margin: auto;
   margin-top: 10px;
 }
@@ -159,7 +159,7 @@ label {
   height: 400px;
   width: 600px;
   border-radius: 25px;
-  background-color: #2e2e2e;
+  background-color: var(--secondary-bg);
   margin-bottom: 20px;
   padding: 15px;
 }
@@ -171,7 +171,7 @@ label {
 /* Sort Icon Styling */
 .fa-angle-up,
 .fa-angle-down {
-  color: #ffffff;
+  color: var(--light-text);
   display: none;
   transition: opacity 0.3s ease;
   margin-left: 10px;
@@ -207,27 +207,29 @@ label {
 .filter-input {
   padding: 10px;
   font-size: 1rem;
-  background-color: #29292f;
+  background-color: var(--primary-bg);
   border: none;
-  color: #ffffff;
+  color: var(--light-text);
   border-radius: 5px;
 }
 
 .add-user-button,
 .add-admin-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #404040;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--light-text);
+  background-color: var(--button-bg);
   border: none;
-  color: #ffffff;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .add-user-button:hover,
 .add-admin-button:hover {
-  background-color: #8e8e8e;
+  background-color: var(--button-hover-bg);
+  transform: scale(1.05);
 }
 
 /* Tables Styling */
@@ -250,7 +252,7 @@ label {
 
 .admin-table th,
 .user-table th {
-  background-color: #29292f;
+  background-color: var(--primary-bg);
   cursor: pointer;
 }
 
@@ -288,7 +290,7 @@ label {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #29292f;
+  background-color: var(--primary-bg);
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   padding: 10px;
   border-radius: 5px;
