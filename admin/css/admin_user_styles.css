@@ -21,7 +21,6 @@ input[type="date"]:focus {
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
   outline: none;
 }
-
 /* Labels Styling */
 label {
   display: block;

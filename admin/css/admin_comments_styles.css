@@ -19,7 +19,7 @@
 .comments-filter {
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 15px;
 }
@@ -33,7 +33,10 @@
   background-color: #f1f1f1;
   transition: all 0.3s ease;
 }
-
+#filterByUser,
+#filterByMovie {
+  max-width: 300px;
+}
 .comments-filter input[type="text"]:focus,
 .comments-filter select:focus {
   outline: none;
@@ -62,7 +65,7 @@
   flex-wrap: wrap;
   transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
-.commet:first-child{
+.commet:first-child {
   border-radius: 15px 15px 0 0;
 }
 .comment:last-child {
@@ -70,18 +73,19 @@
   border-bottom: none;
 }
 .comment:hover {
-  background-color: #f9f9f9; 
-  transform: scale(1.02); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background-color: #f9f9f9;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: black;
 }
 
 .profile-photo {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: #ccc;
   margin-right: 15px;
+  margin-bottom:10px;
   transition: all 0.3s ease; /* Smooth transition for hover */
 }
 .comment:hover .profile-photo {
@@ -89,7 +93,7 @@
 }
 
 .comment-details {
-  width:100%;
+  width: 100%;
   overflow-x: hidden;
   flex-grow: 1;
 }
@@ -145,7 +149,7 @@ strong {
   height: 100%; /* Full height */
   background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
 }
-#commentModal{
+#commentModal {
   flex-direction: column;
 }
 /* Modal Content Box */
@@ -157,7 +161,9 @@ strong {
   width: 50%;
   max-width: 500px;
   position: relative;
-  color: var(--light-text); /* Ensure all text is readable against dark background */
+  color: var(
+    --light-text
+  ); /* Ensure all text is readable against dark background */
   display: flex;
   flex-direction: column;
 }
@@ -172,7 +178,7 @@ strong {
   color: var(--light-text);
   cursor: pointer;
 }
-.modal-details{
+.modal-details {
   display: flex;
   flex-direction: column;
 }
@@ -190,19 +196,19 @@ strong {
   font-size: 1.2em;
   margin-bottom: 15px;
   color: var(--light-text);
-  order:3;
+  order: 3;
 }
 
 #modalCommentMeta {
   font-size: 0.9em;
   color: var(--accent-gray);
   margin-bottom: 20px;
-  order:2;
+  order: 2;
 }
 
 /* Delete Button */
 .delete-button {
-  order:4;
+  order: 4;
   background-color: var(--danger-bg);
   color: var(--light-text);
   border: none;
@@ -230,19 +236,14 @@ strong {
   border-bottom: none;
 }
 .comment:hover {
-  background-color: var(--light-bg); /* Lighter background to make it stand out */
+  background-color: var(
+    --light-bg
+  ); /* Lighter background to make it stand out */
   transform: scale(1.02); /* Slight scale effect to make it pop */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow to create depth */
-  color: var(--dark-text); /* Change text color to dark for better readability */
-}
-
-.profile-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--accent-gray);
-  margin-right: 15px;
-  transition: all 0.3s ease; /* Smooth transition for hover */
+  color: var(
+    --dark-text
+  ); /* Change text color to dark for better readability */
 }
 .comment:hover .profile-photo {
   transform: scale(1.1); /* Slightly increase the profile photo size on hover */
@@ -282,7 +283,9 @@ strong {
 }
 .view-details:hover {
   text-decoration: underline;
-  color: var(--focus-color); /* Use focus color when hovering over "View Details" */
+  color: var(
+    --focus-color
+  ); /* Use focus color when hovering over "View Details" */
 }
 
 strong {

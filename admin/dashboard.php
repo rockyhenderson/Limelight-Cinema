@@ -473,10 +473,10 @@
         require_once '../includes/db_connection.php';
 
         $query = "SELECT comments.*, users.username, movies.title AS movie_title
-    FROM comments
-    JOIN users ON comments.user_id = users.id
-    JOIN movies ON comments.movie_id = movies.id
-    ORDER BY comment_date DESC";
+                  FROM comments
+                  JOIN users ON comments.user_id = users.id
+                  JOIN movies ON comments.movie_id = movies.id
+                  ORDER BY comment_date DESC";
 
         $result = mysqli_query($conn, $query);
 
@@ -489,7 +489,7 @@
               $commentMeta = "Posted by <strong>" . htmlspecialchars($row['username']) . "</strong> on <strong>" . htmlspecialchars($row['movie_title']) . "</strong> - " . htmlspecialchars($row['comment_date']);
               $commentDate = htmlspecialchars($row['comment_date']); // Assuming it's in a valid date format
               $commentId = htmlspecialchars($row['id']); // Assuming the comment ID is in the `id` column
-        
+
               echo '
             <div class="comment" data-id="' . $commentId . '" data-date="' . $commentDate . '">
                 <div class="profile-photo"></div>
@@ -517,11 +517,10 @@
               <h2>Comment Details</h2>
               <p id="modalCommentText"></p>
               <p id="modalCommentMeta"></p>
-              <button class="delete-button" onclick="deleteComment()">Delete Comment</button>
+              <button class="delete-button" id="modalDeleteButton" onclick="deleteComment()">Delete Comment</button>
             </div>
           </div>
         </div>
-
       </div>
 
 
