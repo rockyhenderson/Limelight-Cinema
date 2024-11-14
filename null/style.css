@@ -1,12 +1,45 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif !important;
-  background-color: #121212;
+  background-color: #161620;
+}
+#modal-background-image {
+  height: 40%;
+  background-image: url(../public/src/godzilla.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+#seat-selector-wrapper {
+  background-color: #161620;
+  height: 30%;
+}
+#person-count-wrapper {
+  background-color: blue;
+  height: 8%;
+}
+#venue-selector-wrapper {
+  background-color: purple;
+  height: 8%;
+}
+#select-date-wrapper {
+  background-color: yellow;
+  height: 16%;
+}
+#select-time-wrapper {
+  background-color: pink;
+  height: 8%;
+}
+#price-section-wrapper {
+  background-color: orange;
+  height: 8%;
 }
 
 .mobile {
   background-color: #161620;
   overflow: hidden;
+  max-width: 1700px;
+  margin: auto;
 }
 
 .head-icons {
@@ -20,7 +53,7 @@ body {
   transform: translateX(-50%);
   width: 95%;
   margin-top: 5px;
-  z-index: 1000;
+  z-index: 2;
 }
 
 .head-icons i {
@@ -180,7 +213,9 @@ h1 {
 .review-item {
   margin-bottom: 15px;
 }
-
+.no-scroll {
+  overflow: hidden;
+}
 .review-box {
   background-color: #333;
   border-radius: 10px;
@@ -209,35 +244,6 @@ h1 {
   background-color: #555;
 }
 
-/* Similar Movies Section Styling */
-.similar-movies {
-  position: relative;
-  top: -60px;
-  padding: 20px;
-  color: white;
-}
-
-.similar-movie-item {
-  display: inline-block;
-  text-align: center;
-  margin-right: 10px;
-  margin-bottom: 15px;
-}
-
-.similar-movie-item img {
-  height: 120px;
-  width: 120px;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto 5px auto;
-  object-fit: cover;
-  background-color: #333;
-}
-
-.similar-movie-item span {
-  font-size: 14px;
-  color: white;
-}
 .head-wrapper {
   display: flex;
   flex-direction: column;
@@ -271,70 +277,35 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
+  border-radius: 25px;
+  height: 100%;
+  width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-}
-
-/* Close Button */
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #aaa;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Close Button Hover Effect */
-.close-button:hover {
-  color: #000;
-}
-
-/* Ticket Details */
-.ticket-details p {
-  margin: 10px 0;
-}
-
-/* Seat Selection */
-.seat-selection {
-  margin: 20px 0;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #aaa;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Close Button Hover Effect */
-.close-button:hover {
-  color: #000;
-}
-.modal-content{
-  display: flex;
+  max-width: 1500px;
   position: relative;
 }
-.modalLeft{
-background-color: red;
-width:50%;
+.close-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
-.modalRight{
-  background-color: blue;
-  width:50%;
+/* Close Button */
+.close-button {
+  font-size: 50px; /* Increase font size for a bigger button */
+  font-weight: bold;
+  color: #aaa;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 15px;
 }
+
+/* Close Button Hover Effect */
+.close-button:hover {
+  color: #000;
+}
+
 /* TABLET VIEW */
 @media (min-width: 768px) {
   .movie-info .age-language {
@@ -461,7 +432,7 @@ width:50%;
     height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     max-width: 550px;
   }
   .movie-info {
@@ -472,7 +443,7 @@ width:50%;
     top: 0;
   }
   .reviews {
-    top: 100px;
+    top: 120px;
     padding-left: 0;
   }
   .reviews h2,
@@ -487,6 +458,7 @@ width:50%;
     padding-left: 0px;
   }
 }
+
 /* big ass desktop view */
 @media (min-width: 1444px) {
   .debug-box {
